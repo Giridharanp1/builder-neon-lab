@@ -149,6 +149,7 @@ export default function Marketplace() {
   const { addItem, isInCart, totalItems } = useCart();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { toast } = useToast();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
