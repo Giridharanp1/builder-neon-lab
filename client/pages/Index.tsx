@@ -290,18 +290,18 @@ export default function Index() {
             <div>
               <h3 className="font-semibold mb-4">For Vendors</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/find-suppliers">Find Suppliers</Link></li>
-                <li><Link to="/compare-prices">Compare Prices</Link></li>
-                <li><Link to="/track-orders">Track Orders</Link></li>
+                <li><Link to="/marketplace">Find Suppliers</Link></li>
+                <li><Link to="/marketplace">Compare Prices</Link></li>
+                <li><Link to="/orders">Track Orders</Link></li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">For Suppliers</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/list-products">List Products</Link></li>
-                <li><Link to="/manage-inventory">Manage Inventory</Link></li>
-                <li><Link to="/analytics">Analytics</Link></li>
+                <li><Link to="/suppliers">List Products</Link></li>
+                <li><Link to="/suppliers">Manage Inventory</Link></li>
+                <li><Link to="/suppliers">Analytics</Link></li>
               </ul>
             </div>
             
