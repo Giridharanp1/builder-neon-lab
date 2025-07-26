@@ -51,13 +51,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Check for existing session on mount
   useEffect(() => {
-    const savedUser = localStorage.getItem("streetSupplyUser");
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch {
-        localStorage.removeItem("streetSupplyUser");
+    try {
+      const savedUser = localStorage.getItem("streetSupplyUser");
+      if (savedUser) {
+        try {
+          setUser(JSON.parse(savedUser));
+        } catch {
+          localStorage.removeItem("streetSupplyUser");
+        }
       }
+    } catch (error) {
+      console.warn("Failed to load user from localStorage:", error);
     }
   }, []);
 
