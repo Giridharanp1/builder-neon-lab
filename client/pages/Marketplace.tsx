@@ -147,7 +147,8 @@ export default function Marketplace() {
   const { user, isAuthenticated, logout } = useAuth();
   const { addItem, isInCart, totalItems } = useCart();
   const navigate = useNavigate();
-  
+  const [searchParams] = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 500]);
@@ -155,6 +156,14 @@ export default function Marketplace() {
   const [sortBy, setSortBy] = useState('relevance');
   const [filteredProducts, setFilteredProducts] = useState(mockProducts);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+
+  // Initialize search from URL parameters
+  useEffect(() => {
+    const query = searchParams.get('q');
+    if (query) {
+      setSearchQuery(query);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (!isAuthenticated) {
