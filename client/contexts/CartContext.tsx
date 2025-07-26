@@ -42,13 +42,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem("streetSupplyCart");
-    if (savedCart) {
-      try {
-        setItems(JSON.parse(savedCart));
-      } catch {
-        localStorage.removeItem("streetSupplyCart");
+    try {
+      const savedCart = localStorage.getItem("streetSupplyCart");
+      if (savedCart) {
+        try {
+          setItems(JSON.parse(savedCart));
+        } catch {
+          localStorage.removeItem("streetSupplyCart");
+        }
       }
+    } catch (error) {
+      console.warn("Failed to load cart from localStorage:", error);
     }
   }, []);
 
