@@ -199,10 +199,12 @@ export default function Dashboard() {
                 </Button>
               </Link>
               
-              <Button variant="outline" className="w-full justify-start" size="lg">
-                <Plus className="mr-2 h-4 w-4" />
-                {isVendor ? 'Place New Order' : 'Add Product'}
-              </Button>
+              <Link to={isVendor ? "/marketplace" : "/suppliers"}>
+                <Button variant="outline" className="w-full justify-start" size="lg">
+                  <Plus className="mr-2 h-4 w-4" />
+                  {isVendor ? 'Place New Order' : 'Add Product'}
+                </Button>
+              </Link>
               
               <Link to="/orders">
                 <Button variant="outline" className="w-full justify-start" size="lg">
