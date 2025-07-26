@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: b2b-supplier-platform
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE
+        value: 30d
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://your-frontend-domain.com
+
+databases:
+  - name: b2b-supplier-mongodb
+    databaseName: b2b-supplier-platform
+    plan: free 

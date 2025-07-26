@@ -1,0 +1,47 @@
+{
+  "name": "b2b-supplier-platform",
+  "description": "B2B Supplier Discovery and Ordering Platform",
+  "repository": "https://github.com/yourusername/b2b-supplier-platform",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "mongodb", "b2b", "supplier"],
+  "env": {
+    "NODE_ENV": {
+      "description": "Environment",
+      "value": "production"
+    },
+    "JWT_SECRET": {
+      "description": "JWT Secret Key",
+      "generator": "secret"
+    },
+    "JWT_EXPIRE": {
+      "description": "JWT Expiration",
+      "value": "30d"
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API Key",
+      "required": false
+    },
+    "STRIPE_SECRET_KEY": {
+      "description": "Stripe Secret Key",
+      "required": false
+    },
+    "STRIPE_PUBLISHABLE_KEY": {
+      "description": "Stripe Publishable Key",
+      "required": false
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:sandbox",
+      "as": "MONGODB"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "npm run seed"
+  }
+} 

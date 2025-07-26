@@ -18,12 +18,26 @@
     "start": "node dist/server/node-build.mjs",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "server:dev": "tsx server/index.ts",
+    "demo:server": "tsx server/demo-server.ts",
+    "seed": "tsx server/utils/seedData.ts"
   },
   "dependencies": {
     "dotenv": "^17.2.0",
     "express": "^4.18.2",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "mongoose": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "bcryptjs": "^2.4.3",
+    "openai": "^4.20.0",
+    "stripe": "^14.0.0",
+    "express-async-handler": "^1.2.0",
+    "express-rate-limit": "^7.1.0",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "cors": "^2.8.5",
+    "express-validator": "^7.0.1"
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -70,7 +84,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
-    "cors": "^2.8.5",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.6.2",
