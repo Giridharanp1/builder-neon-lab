@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -11,58 +17,58 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function SignIn() {
   const navigate = useNavigate();
   const { login, loading } = useAuth();
-  
+
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-    if (error) setError('');
+    if (error) setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     // Basic validation
     if (!formData.email || !formData.password) {
-      setError('Please fill in all fields');
+      setError("Please fill in all fields");
       return;
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError('Please enter a valid email address');
+      setError("Please enter a valid email address");
       return;
     }
 
     if (formData.password.length < 3) {
-      setError('Password must be at least 3 characters long');
+      setError("Password must be at least 3 characters long");
       return;
     }
 
     try {
       await login(formData.email, formData.password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : "Login failed");
     }
   };
 
-  const handleDemoLogin = async (type: 'vendor' | 'supplier') => {
-    setError('');
+  const handleDemoLogin = async (type: "vendor" | "supplier") => {
+    setError("");
     try {
-      const email = type === 'vendor' ? 'vendor@demo.com' : 'supplier@demo.com';
-      await login(email, 'demo123');
-      navigate('/dashboard');
+      const email = type === "vendor" ? "vendor@demo.com" : "supplier@demo.com";
+      await login(email, "demo123");
+      navigate("/dashboard");
     } catch (err) {
-      setError('Demo login failed');
+      setError("Demo login failed");
     }
   };
 
@@ -71,35 +77,46 @@ export default function SignIn() {
       <div className="w-full max-w-md space-y-6">
         {/* Header */}
         <div className="text-center">
-          <Link to="/" className="flex items-center justify-center space-x-2 mb-6">
+          <Link
+            to="/"
+            className="flex items-center justify-center space-x-2 mb-6"
+          >
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">S</span>
             </div>
-            <span className="text-2xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-2xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
           <h1 className="text-3xl font-bold text-foreground">Welcome Back</h1>
-          <p className="text-muted-foreground mt-2">Sign in to your account to continue</p>
+          <p className="text-muted-foreground mt-2">
+            Sign in to your account to continue
+          </p>
         </div>
 
         {/* Demo Login Cards */}
         <div className="grid grid-cols-2 gap-3">
           <Button
             variant="outline"
-            onClick={() => handleDemoLogin('vendor')}
+            onClick={() => handleDemoLogin("vendor")}
             disabled={loading}
             className="h-auto p-3 flex flex-col space-y-1"
           >
             <span className="text-xs font-medium">Demo Vendor</span>
-            <span className="text-xs text-muted-foreground">vendor@demo.com</span>
+            <span className="text-xs text-muted-foreground">
+              vendor@demo.com
+            </span>
           </Button>
           <Button
             variant="outline"
-            onClick={() => handleDemoLogin('supplier')}
+            onClick={() => handleDemoLogin("supplier")}
             disabled={loading}
             className="h-auto p-3 flex flex-col space-y-1"
           >
             <span className="text-xs font-medium">Demo Supplier</span>
-            <span className="text-xs text-muted-foreground">supplier@demo.com</span>
+            <span className="text-xs text-muted-foreground">
+              supplier@demo.com
+            </span>
           </Button>
         </div>
 
@@ -108,7 +125,9 @@ export default function SignIn() {
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-background px-2 text-muted-foreground">Or continue with email</span>
+            <span className="bg-background px-2 text-muted-foreground">
+              Or continue with email
+            </span>
           </div>
         </div>
 
@@ -176,14 +195,22 @@ export default function SignIn() {
             </form>
 
             <div className="mt-6 text-center text-sm">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link to="/signup" className="text-primary hover:underline font-medium">
+              <span className="text-muted-foreground">
+                Don't have an account?{" "}
+              </span>
+              <Link
+                to="/signup"
+                className="text-primary hover:underline font-medium"
+              >
                 Sign up
               </Link>
             </div>
 
             <div className="mt-4 text-center">
-              <Link to="/forgot-password" className="text-sm text-muted-foreground hover:text-primary">
+              <Link
+                to="/forgot-password"
+                className="text-sm text-muted-foreground hover:text-primary"
+              >
                 Forgot your password?
               </Link>
             </div>
@@ -191,7 +218,10 @@ export default function SignIn() {
         </Card>
 
         <div className="text-center">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to="/"
+            className="text-sm text-muted-foreground hover:text-primary"
+          >
             ← Back to Home
           </Link>
         </div>

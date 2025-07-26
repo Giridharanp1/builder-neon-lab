@@ -1,19 +1,31 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { 
-  User, 
-  Bell, 
-  Shield, 
-  CreditCard, 
+import {
+  User,
+  Bell,
+  Shield,
+  CreditCard,
   Mail,
   Phone,
   MapPin,
@@ -22,7 +34,7 @@ import {
   Trash2,
   ArrowLeft,
   Eye,
-  EyeOff
+  EyeOff,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -34,12 +46,12 @@ export default function Settings() {
   const { toast } = useToast();
 
   const [profileData, setProfileData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    phone: user?.phone || '',
-    businessName: user?.businessName || '',
-    location: user?.location || '',
-    bio: ''
+    name: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
+    businessName: user?.businessName || "",
+    location: user?.location || "",
+    bio: "",
   });
 
   const [notifications, setNotifications] = useState({
@@ -47,42 +59,42 @@ export default function Settings() {
     newSuppliers: true,
     priceAlerts: true,
     marketingEmails: false,
-    smsNotifications: true
+    smsNotifications: true,
   });
 
   const [privacy, setPrivacy] = useState({
     profileVisible: true,
     showBusinessInfo: true,
-    allowMessages: true
+    allowMessages: true,
   });
 
   const [security, setSecurity] = useState({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const [showPasswords, setShowPasswords] = useState({
     current: false,
     new: false,
-    confirm: false
+    confirm: false,
   });
 
   const [loading, setLoading] = useState(false);
 
   if (!isAuthenticated) {
-    navigate('/signin');
+    navigate("/signin");
     return null;
   }
 
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       toast({
         title: "Profile updated",
         description: "Your profile has been updated successfully.",
@@ -100,7 +112,7 @@ export default function Settings() {
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (security.newPassword !== security.confirmPassword) {
       toast({
         title: "Error",
@@ -120,13 +132,17 @@ export default function Settings() {
     }
 
     setLoading(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setSecurity({ currentPassword: '', newPassword: '', confirmPassword: '' });
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setSecurity({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+
       toast({
         title: "Password updated",
         description: "Your password has been changed successfully.",
@@ -143,10 +159,15 @@ export default function Settings() {
   };
 
   const handleDeleteAccount = () => {
-    if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+    if (
+      confirm(
+        "Are you sure you want to delete your account? This action cannot be undone.",
+      )
+    ) {
       toast({
         title: "Account deletion requested",
-        description: "Your account deletion request has been submitted. You'll receive an email with next steps.",
+        description:
+          "Your account deletion request has been submitted. You'll receive an email with next steps.",
       });
     }
   };
@@ -160,17 +181,28 @@ export default function Settings() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/dashboard"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Dashboard
             </Link>
-            <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/marketplace"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Marketplace
             </Link>
-            <Link to="/orders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/orders"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Orders
             </Link>
           </nav>
@@ -178,7 +210,9 @@ export default function Settings() {
           <div className="flex items-center space-x-4">
             <Avatar className="h-8 w-8">
               <AvatarImage src={user?.avatar} alt={user?.name} />
-              <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {user?.name?.charAt(0).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <Button variant="ghost" size="sm" onClick={logout}>
               Logout
@@ -197,7 +231,9 @@ export default function Settings() {
           </Link>
           <div>
             <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-            <p className="text-muted-foreground">Manage your account settings and preferences</p>
+            <p className="text-muted-foreground">
+              Manage your account settings and preferences
+            </p>
           </div>
         </div>
 
@@ -261,7 +297,12 @@ export default function Settings() {
                       <Input
                         id="name"
                         value={profileData.name}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
+                        }
                         required
                       />
                     </div>
@@ -271,7 +312,12 @@ export default function Settings() {
                         id="email"
                         type="email"
                         value={profileData.email}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, email: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            email: e.target.value,
+                          }))
+                        }
                         required
                       />
                     </div>
@@ -283,7 +329,12 @@ export default function Settings() {
                       <Input
                         id="phone"
                         value={profileData.phone}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, phone: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            phone: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -291,7 +342,12 @@ export default function Settings() {
                       <Input
                         id="businessName"
                         value={profileData.businessName}
-                        onChange={(e) => setProfileData(prev => ({ ...prev, businessName: e.target.value }))}
+                        onChange={(e) =>
+                          setProfileData((prev) => ({
+                            ...prev,
+                            businessName: e.target.value,
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -301,7 +357,12 @@ export default function Settings() {
                     <Input
                       id="location"
                       value={profileData.location}
-                      onChange={(e) => setProfileData(prev => ({ ...prev, location: e.target.value }))}
+                      onChange={(e) =>
+                        setProfileData((prev) => ({
+                          ...prev,
+                          location: e.target.value,
+                        }))
+                      }
                       placeholder="City, State"
                     />
                   </div>
@@ -333,14 +394,18 @@ export default function Settings() {
                     <div>
                       <Label htmlFor="orderUpdates">Order Updates</Label>
                       <p className="text-sm text-muted-foreground">
-                        Get notified about order confirmations, deliveries, and status changes
+                        Get notified about order confirmations, deliveries, and
+                        status changes
                       </p>
                     </div>
                     <Switch
                       id="orderUpdates"
                       checked={notifications.orderUpdates}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, orderUpdates: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          orderUpdates: checked,
+                        }))
                       }
                     />
                   </div>
@@ -355,8 +420,11 @@ export default function Settings() {
                     <Switch
                       id="newSuppliers"
                       checked={notifications.newSuppliers}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, newSuppliers: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          newSuppliers: checked,
+                        }))
                       }
                     />
                   </div>
@@ -365,14 +433,18 @@ export default function Settings() {
                     <div>
                       <Label htmlFor="priceAlerts">Price Alerts</Label>
                       <p className="text-sm text-muted-foreground">
-                        Get alerts when prices drop for your frequently ordered items
+                        Get alerts when prices drop for your frequently ordered
+                        items
                       </p>
                     </div>
                     <Switch
                       id="priceAlerts"
                       checked={notifications.priceAlerts}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, priceAlerts: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          priceAlerts: checked,
+                        }))
                       }
                     />
                   </div>
@@ -387,15 +459,20 @@ export default function Settings() {
                     <Switch
                       id="marketingEmails"
                       checked={notifications.marketingEmails}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, marketingEmails: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          marketingEmails: checked,
+                        }))
                       }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="smsNotifications">SMS Notifications</Label>
+                      <Label htmlFor="smsNotifications">
+                        SMS Notifications
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         Receive important updates via text message
                       </p>
@@ -403,8 +480,11 @@ export default function Settings() {
                     <Switch
                       id="smsNotifications"
                       checked={notifications.smsNotifications}
-                      onCheckedChange={(checked) => 
-                        setNotifications(prev => ({ ...prev, smsNotifications: checked }))
+                      onCheckedChange={(checked) =>
+                        setNotifications((prev) => ({
+                          ...prev,
+                          smsNotifications: checked,
+                        }))
                       }
                     />
                   </div>
@@ -436,21 +516,27 @@ export default function Settings() {
                     <div>
                       <Label htmlFor="profileVisible">Public Profile</Label>
                       <p className="text-sm text-muted-foreground">
-                        Make your profile visible to other users in the marketplace
+                        Make your profile visible to other users in the
+                        marketplace
                       </p>
                     </div>
                     <Switch
                       id="profileVisible"
                       checked={privacy.profileVisible}
-                      onCheckedChange={(checked) => 
-                        setPrivacy(prev => ({ ...prev, profileVisible: checked }))
+                      onCheckedChange={(checked) =>
+                        setPrivacy((prev) => ({
+                          ...prev,
+                          profileVisible: checked,
+                        }))
                       }
                     />
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <Label htmlFor="showBusinessInfo">Business Information</Label>
+                      <Label htmlFor="showBusinessInfo">
+                        Business Information
+                      </Label>
                       <p className="text-sm text-muted-foreground">
                         Display your business name and details publicly
                       </p>
@@ -458,8 +544,11 @@ export default function Settings() {
                     <Switch
                       id="showBusinessInfo"
                       checked={privacy.showBusinessInfo}
-                      onCheckedChange={(checked) => 
-                        setPrivacy(prev => ({ ...prev, showBusinessInfo: checked }))
+                      onCheckedChange={(checked) =>
+                        setPrivacy((prev) => ({
+                          ...prev,
+                          showBusinessInfo: checked,
+                        }))
                       }
                     />
                   </div>
@@ -474,8 +563,11 @@ export default function Settings() {
                     <Switch
                       id="allowMessages"
                       checked={privacy.allowMessages}
-                      onCheckedChange={(checked) => 
-                        setPrivacy(prev => ({ ...prev, allowMessages: checked }))
+                      onCheckedChange={(checked) =>
+                        setPrivacy((prev) => ({
+                          ...prev,
+                          allowMessages: checked,
+                        }))
                       }
                     />
                   </div>
@@ -511,7 +603,12 @@ export default function Settings() {
                           id="currentPassword"
                           type={showPasswords.current ? "text" : "password"}
                           value={security.currentPassword}
-                          onChange={(e) => setSecurity(prev => ({ ...prev, currentPassword: e.target.value }))}
+                          onChange={(e) =>
+                            setSecurity((prev) => ({
+                              ...prev,
+                              currentPassword: e.target.value,
+                            }))
+                          }
                           required
                         />
                         <Button
@@ -519,9 +616,18 @@ export default function Settings() {
                           variant="ghost"
                           size="sm"
                           className="absolute right-0 top-0 h-full px-3"
-                          onClick={() => setShowPasswords(prev => ({ ...prev, current: !prev.current }))}
+                          onClick={() =>
+                            setShowPasswords((prev) => ({
+                              ...prev,
+                              current: !prev.current,
+                            }))
+                          }
                         >
-                          {showPasswords.current ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showPasswords.current ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
                         </Button>
                       </div>
                     </div>
@@ -533,7 +639,12 @@ export default function Settings() {
                           id="newPassword"
                           type={showPasswords.new ? "text" : "password"}
                           value={security.newPassword}
-                          onChange={(e) => setSecurity(prev => ({ ...prev, newPassword: e.target.value }))}
+                          onChange={(e) =>
+                            setSecurity((prev) => ({
+                              ...prev,
+                              newPassword: e.target.value,
+                            }))
+                          }
                           required
                         />
                         <Button
@@ -541,21 +652,37 @@ export default function Settings() {
                           variant="ghost"
                           size="sm"
                           className="absolute right-0 top-0 h-full px-3"
-                          onClick={() => setShowPasswords(prev => ({ ...prev, new: !prev.new }))}
+                          onClick={() =>
+                            setShowPasswords((prev) => ({
+                              ...prev,
+                              new: !prev.new,
+                            }))
+                          }
                         >
-                          {showPasswords.new ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showPasswords.new ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
                         </Button>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                      <Label htmlFor="confirmPassword">
+                        Confirm New Password
+                      </Label>
                       <div className="relative">
                         <Input
                           id="confirmPassword"
                           type={showPasswords.confirm ? "text" : "password"}
                           value={security.confirmPassword}
-                          onChange={(e) => setSecurity(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                          onChange={(e) =>
+                            setSecurity((prev) => ({
+                              ...prev,
+                              confirmPassword: e.target.value,
+                            }))
+                          }
                           required
                         />
                         <Button
@@ -563,15 +690,26 @@ export default function Settings() {
                           variant="ghost"
                           size="sm"
                           className="absolute right-0 top-0 h-full px-3"
-                          onClick={() => setShowPasswords(prev => ({ ...prev, confirm: !prev.confirm }))}
+                          onClick={() =>
+                            setShowPasswords((prev) => ({
+                              ...prev,
+                              confirm: !prev.confirm,
+                            }))
+                          }
                         >
-                          {showPasswords.confirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          {showPasswords.confirm ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
                         </Button>
                       </div>
                     </div>
 
                     <Button type="submit" disabled={loading}>
-                      {loading && <Save className="mr-2 h-4 w-4 animate-spin" />}
+                      {loading && (
+                        <Save className="mr-2 h-4 w-4 animate-spin" />
+                      )}
                       Update Password
                     </Button>
                   </form>
@@ -580,7 +718,9 @@ export default function Settings() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-destructive">Danger Zone</CardTitle>
+                  <CardTitle className="text-destructive">
+                    Danger Zone
+                  </CardTitle>
                   <CardDescription>
                     Irreversible and destructive actions
                   </CardDescription>
@@ -588,11 +728,12 @@ export default function Settings() {
                 <CardContent>
                   <Alert>
                     <AlertDescription>
-                      Once you delete your account, there is no going back. Please be certain.
+                      Once you delete your account, there is no going back.
+                      Please be certain.
                     </AlertDescription>
                   </Alert>
-                  <Button 
-                    variant="destructive" 
+                  <Button
+                    variant="destructive"
                     className="mt-4"
                     onClick={handleDeleteAccount}
                   >
@@ -645,7 +786,7 @@ export default function Settings() {
 
                 <div className="space-y-4">
                   <h4 className="font-medium">Available Upgrades</h4>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="p-4 border rounded-lg">
                       <div className="flex items-center justify-between mb-2">

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -15,24 +21,24 @@ export default function SignUp() {
   const [searchParams] = useSearchParams();
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    type: 'vendor' as 'vendor' | 'supplier',
-    businessName: '',
-    location: '',
-    phone: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    type: "vendor" as "vendor" | "supplier",
+    businessName: "",
+    location: "",
+    phone: "",
   });
 
   // Set type from URL parameter if provided
   useEffect(() => {
-    const typeParam = searchParams.get('type');
-    if (typeParam === 'vendor' || typeParam === 'supplier') {
-      setFormData(prev => ({ ...prev, type: typeParam }));
+    const typeParam = searchParams.get("type");
+    if (typeParam === "vendor" || typeParam === "supplier") {
+      setFormData((prev) => ({ ...prev, type: typeParam }));
     }
   }, [searchParams]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
@@ -41,62 +47,79 @@ export default function SignUp() {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
 
     // Clear errors when user starts typing
-    if (error) setError('');
+    if (error) setError("");
     if (fieldErrors[name]) {
-      setFieldErrors(prev => ({ ...prev, [name]: '' }));
+      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
     // Real-time validation
-    if (name === 'email' && value && !/\S+@\S+\.\S+/.test(value)) {
-      setFieldErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+    if (name === "email" && value && !/\S+@\S+\.\S+/.test(value)) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email address",
+      }));
     }
 
-    if (name === 'confirmPassword' && value && value !== formData.password) {
-      setFieldErrors(prev => ({ ...prev, confirmPassword: 'Passwords do not match' }));
+    if (name === "confirmPassword" && value && value !== formData.password) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        confirmPassword: "Passwords do not match",
+      }));
     }
 
-    if (name === 'password' && formData.confirmPassword && value !== formData.confirmPassword) {
-      setFieldErrors(prev => ({ ...prev, confirmPassword: 'Passwords do not match' }));
-    } else if (name === 'password' && formData.confirmPassword && value === formData.confirmPassword) {
-      setFieldErrors(prev => ({ ...prev, confirmPassword: '' }));
+    if (
+      name === "password" &&
+      formData.confirmPassword &&
+      value !== formData.confirmPassword
+    ) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        confirmPassword: "Passwords do not match",
+      }));
+    } else if (
+      name === "password" &&
+      formData.confirmPassword &&
+      value === formData.confirmPassword
+    ) {
+      setFieldErrors((prev) => ({ ...prev, confirmPassword: "" }));
     }
   };
 
   const handleTypeChange = (value: string) => {
     setFormData({
       ...formData,
-      type: value as 'vendor' | 'supplier'
+      type: value as "vendor" | "supplier",
     });
-    if (error) setError('');
+    if (error) setError("");
   };
 
   const validateForm = () => {
     if (!formData.name.trim() || !formData.email.trim() || !formData.password) {
-      return 'Please fill in all required fields';
+      return "Please fill in all required fields";
     }
 
     if (formData.name.trim().length < 2) {
-      return 'Name must be at least 2 characters long';
+      return "Name must be at least 2 characters long";
     }
 
     if (formData.password.length < 6) {
-      return 'Password must be at least 6 characters long';
+      return "Password must be at least 6 characters long";
     }
 
     if (formData.password !== formData.confirmPassword) {
-      return 'Passwords do not match';
+      return "Passwords do not match";
     }
 
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      return 'Please enter a valid email address';
+      return "Please enter a valid email address";
     }
 
     if (formData.phone && !/^[\+]?[\d\s\-\(\)]{10,}$/.test(formData.phone)) {
-      return 'Please enter a valid phone number';
+      return "Please enter a valid phone number";
     }
 
     return null;
@@ -104,7 +127,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     const validationError = validateForm();
     if (validationError) {
@@ -120,11 +143,11 @@ export default function SignUp() {
         type: formData.type,
         businessName: formData.businessName,
         location: formData.location,
-        phone: formData.phone
+        phone: formData.phone,
       });
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Registration failed');
+      setError(err instanceof Error ? err.message : "Registration failed");
     }
   };
 
@@ -133,14 +156,21 @@ export default function SignUp() {
       <div className="w-full max-w-lg space-y-6">
         {/* Header */}
         <div className="text-center">
-          <Link to="/" className="flex items-center justify-center space-x-2 mb-6">
+          <Link
+            to="/"
+            className="flex items-center justify-center space-x-2 mb-6"
+          >
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">S</span>
             </div>
-            <span className="text-2xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-2xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
           <h1 className="text-3xl font-bold text-foreground">Create Account</h1>
-          <p className="text-muted-foreground mt-2">Join the marketplace and grow your business</p>
+          <p className="text-muted-foreground mt-2">
+            Join the marketplace and grow your business
+          </p>
         </div>
 
         {/* Sign Up Form */}
@@ -162,21 +192,32 @@ export default function SignUp() {
               {/* Account Type */}
               <div className="space-y-3">
                 <Label>I am a:</Label>
-                <RadioGroup value={formData.type} onValueChange={handleTypeChange}>
+                <RadioGroup
+                  value={formData.type}
+                  onValueChange={handleTypeChange}
+                >
                   <div className="flex items-center space-x-2 p-3 border rounded-lg">
                     <RadioGroupItem value="vendor" id="vendor" />
                     <Store className="h-4 w-4 text-primary" />
                     <div className="flex-1">
-                      <Label htmlFor="vendor" className="font-medium">Street Food Vendor</Label>
-                      <p className="text-xs text-muted-foreground">Buy ingredients and supplies</p>
+                      <Label htmlFor="vendor" className="font-medium">
+                        Street Food Vendor
+                      </Label>
+                      <p className="text-xs text-muted-foreground">
+                        Buy ingredients and supplies
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2 p-3 border rounded-lg">
                     <RadioGroupItem value="supplier" id="supplier" />
                     <Truck className="h-4 w-4 text-primary" />
                     <div className="flex-1">
-                      <Label htmlFor="supplier" className="font-medium">Supplier</Label>
-                      <p className="text-xs text-muted-foreground">Sell ingredients and supplies</p>
+                      <Label htmlFor="supplier" className="font-medium">
+                        Supplier
+                      </Label>
+                      <p className="text-xs text-muted-foreground">
+                        Sell ingredients and supplies
+                      </p>
                     </div>
                   </div>
                 </RadioGroup>
@@ -224,7 +265,11 @@ export default function SignUp() {
                 <Input
                   id="businessName"
                   name="businessName"
-                  placeholder={formData.type === 'vendor' ? 'Your food stall name' : 'Your supplier company'}
+                  placeholder={
+                    formData.type === "vendor"
+                      ? "Your food stall name"
+                      : "Your supplier company"
+                  }
                   value={formData.businessName}
                   onChange={handleChange}
                 />
@@ -286,7 +331,9 @@ export default function SignUp() {
                       variant="ghost"
                       size="sm"
                       className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
                     >
                       {showConfirmPassword ? (
                         <EyeOff className="h-4 w-4" />
@@ -305,23 +352,35 @@ export default function SignUp() {
             </form>
 
             <div className="mt-6 text-center text-sm">
-              <span className="text-muted-foreground">Already have an account? </span>
-              <Link to="/signin" className="text-primary hover:underline font-medium">
+              <span className="text-muted-foreground">
+                Already have an account?{" "}
+              </span>
+              <Link
+                to="/signin"
+                className="text-primary hover:underline font-medium"
+              >
                 Sign in
               </Link>
             </div>
 
             <div className="mt-4 text-center text-xs text-muted-foreground">
-              By creating an account, you agree to our{' '}
-              <Link to="/terms" className="underline hover:text-primary">Terms of Service</Link>
-              {' '}and{' '}
-              <Link to="/privacy" className="underline hover:text-primary">Privacy Policy</Link>
+              By creating an account, you agree to our{" "}
+              <Link to="/terms" className="underline hover:text-primary">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link to="/privacy" className="underline hover:text-primary">
+                Privacy Policy
+              </Link>
             </div>
           </CardContent>
         </Card>
 
         <div className="text-center">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to="/"
+            className="text-sm text-muted-foreground hover:text-primary"
+          >
             ← Back to Home
           </Link>
         </div>

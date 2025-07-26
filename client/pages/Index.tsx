@@ -1,39 +1,56 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, MapPin, Star, TrendingUp, Users, Zap, ShoppingCart, Clock } from "lucide-react";
+import {
+  Search,
+  MapPin,
+  Star,
+  TrendingUp,
+  Users,
+  Zap,
+  ShoppingCart,
+  Clock,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Index() {
   const { isAuthenticated, user } = useAuth();
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchLocation, setSearchLocation] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchLocation, setSearchLocation] = useState("");
 
   const handleSearch = () => {
     if (searchQuery || searchLocation) {
-      navigate(`/marketplace?q=${encodeURIComponent(searchQuery)}&location=${encodeURIComponent(searchLocation)}`);
+      navigate(
+        `/marketplace?q=${encodeURIComponent(searchQuery)}&location=${encodeURIComponent(searchLocation)}`,
+      );
     } else {
-      navigate('/marketplace');
+      navigate("/marketplace");
     }
   };
 
   const handleGetStarted = () => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      navigate('/signup');
+      navigate("/signup");
     }
   };
 
   const handleSignIn = () => {
     if (isAuthenticated) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      navigate('/signin');
+      navigate("/signin");
     }
   };
 
@@ -46,17 +63,28 @@ export default function Index() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </div>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/marketplace"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Marketplace
             </Link>
-            <Link to="/suppliers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/suppliers"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               For Suppliers
             </Link>
-            <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/about"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               About Us
             </Link>
           </nav>
@@ -64,7 +92,9 @@ export default function Index() {
           <div className="flex items-center space-x-2">
             {isAuthenticated && user ? (
               <>
-                <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
+                <span className="text-sm text-muted-foreground">
+                  Hi, {user.name}
+                </span>
                 <Link to="/dashboard">
                   <Button size="sm">Dashboard</Button>
                 </Link>
@@ -92,9 +122,11 @@ export default function Index() {
               <span className="text-primary"> Trusted Suppliers</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Discover nearby suppliers, compare prices, read verified reviews, and streamline your procurement process with AI-powered recommendations.
+              Discover nearby suppliers, compare prices, read verified reviews,
+              and streamline your procurement process with AI-powered
+              recommendations.
             </p>
-            
+
             {/* Search Bar */}
             <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
@@ -104,7 +136,7 @@ export default function Index() {
                   className="pl-10 h-12 text-base"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  onKeyPress={(e) => e.key === "Enter" && handleSearch()}
                 />
               </div>
               <div className="relative">
@@ -114,7 +146,7 @@ export default function Index() {
                   className="pl-10 h-12 w-full sm:w-40"
                   value={searchLocation}
                   onChange={(e) => setSearchLocation(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                  onKeyPress={(e) => e.key === "Enter" && handleSearch()}
                 />
               </div>
               <Button size="lg" className="h-12 px-8" onClick={handleSearch}>
@@ -141,7 +173,8 @@ export default function Index() {
               Why Choose StreetSupply?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Cut out middlemen, reduce costs, and streamline your supply chain with our smart marketplace.
+              Cut out middlemen, reduce costs, and streamline your supply chain
+              with our smart marketplace.
             </p>
           </div>
 
@@ -153,7 +186,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Find Nearby Suppliers</CardTitle>
                 <CardDescription>
-                  Discover verified suppliers in your area and reduce delivery costs and time.
+                  Discover verified suppliers in your area and reduce delivery
+                  costs and time.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -165,7 +199,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Compare Prices</CardTitle>
                 <CardDescription>
-                  Get real-time pricing from multiple suppliers and choose the best deals for your business.
+                  Get real-time pricing from multiple suppliers and choose the
+                  best deals for your business.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -177,7 +212,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Verified Reviews</CardTitle>
                 <CardDescription>
-                  Read authentic reviews from other vendors to make informed purchasing decisions.
+                  Read authentic reviews from other vendors to make informed
+                  purchasing decisions.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -189,7 +225,8 @@ export default function Index() {
                 </div>
                 <CardTitle>AI Recommendations</CardTitle>
                 <CardDescription>
-                  Get smart supplier suggestions based on your order history, pricing preferences, and location.
+                  Get smart supplier suggestions based on your order history,
+                  pricing preferences, and location.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -201,7 +238,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Seamless Ordering</CardTitle>
                 <CardDescription>
-                  Place orders easily with integrated payment processing and order tracking.
+                  Place orders easily with integrated payment processing and
+                  order tracking.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -213,7 +251,8 @@ export default function Index() {
                 </div>
                 <CardTitle>Demand Prediction</CardTitle>
                 <CardDescription>
-                  AI-powered insights help you predict demand based on seasons, trends, and your purchase history.
+                  AI-powered insights help you predict demand based on seasons,
+                  trends, and your purchase history.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -226,20 +265,34 @@ export default function Index() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">5,000+</div>
-              <div className="text-sm text-muted-foreground">Active Vendors</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                5,000+
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Active Vendors
+              </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">1,200+</div>
-              <div className="text-sm text-muted-foreground">Verified Suppliers</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                1,200+
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Verified Suppliers
+              </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">₹2.5Cr+</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                ₹2.5Cr+
+              </div>
               <div className="text-sm text-muted-foreground">Total Orders</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">25%</div>
-              <div className="text-sm text-muted-foreground">Average Savings</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                25%
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Average Savings
+              </div>
             </div>
           </div>
         </div>
@@ -253,7 +306,8 @@ export default function Index() {
               Ready to Transform Your Supply Chain?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Join thousands of street food vendors who are already saving time and money with StreetSupply.
+              Join thousands of street food vendors who are already saving time
+              and money with StreetSupply.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to={isAuthenticated ? "/dashboard" : "/signup?type=vendor"}>
@@ -261,8 +315,14 @@ export default function Index() {
                   Start as Vendor
                 </Button>
               </Link>
-              <Link to={isAuthenticated ? "/dashboard" : "/signup?type=supplier"}>
-                <Button size="lg" variant="outline" className="px-8 w-full sm:w-auto">
+              <Link
+                to={isAuthenticated ? "/dashboard" : "/signup?type=supplier"}
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="px-8 w-full sm:w-auto"
+                >
                   Join as Supplier
                 </Button>
               </Link>
@@ -283,38 +343,57 @@ export default function Index() {
                 <span className="text-xl font-bold">StreetSupply</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Connecting street food vendors with trusted suppliers for a better tomorrow.
+                Connecting street food vendors with trusted suppliers for a
+                better tomorrow.
               </p>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">For Vendors</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/marketplace">Find Suppliers</Link></li>
-                <li><Link to="/marketplace">Compare Prices</Link></li>
-                <li><Link to="/orders">Track Orders</Link></li>
+                <li>
+                  <Link to="/marketplace">Find Suppliers</Link>
+                </li>
+                <li>
+                  <Link to="/marketplace">Compare Prices</Link>
+                </li>
+                <li>
+                  <Link to="/orders">Track Orders</Link>
+                </li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold mb-4">For Suppliers</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/suppliers">List Products</Link></li>
-                <li><Link to="/suppliers">Manage Inventory</Link></li>
-                <li><Link to="/suppliers">Analytics</Link></li>
+                <li>
+                  <Link to="/suppliers">List Products</Link>
+                </li>
+                <li>
+                  <Link to="/suppliers">Manage Inventory</Link>
+                </li>
+                <li>
+                  <Link to="/suppliers">Analytics</Link>
+                </li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="font-semibold mb-4">Support</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/help">Help Center</Link></li>
-                <li><Link to="/contact">Contact Us</Link></li>
-                <li><Link to="/terms">Terms of Service</Link></li>
+                <li>
+                  <Link to="/help">Help Center</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact Us</Link>
+                </li>
+                <li>
+                  <Link to="/terms">Terms of Service</Link>
+                </li>
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
             <p>&copy; 2024 StreetSupply. All rights reserved.</p>
           </div>

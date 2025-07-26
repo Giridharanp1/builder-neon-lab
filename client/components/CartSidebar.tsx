@@ -4,14 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  ShoppingCart,
-  Plus,
-  Minus,
-  Trash2,
-  X,
-  Store
-} from "lucide-react";
+import { ShoppingCart, Plus, Minus, Trash2, X, Store } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -21,26 +14,33 @@ interface CartSidebarProps {
 }
 
 export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
-  const { items, totalItems, totalAmount, updateQuantity, removeItem, clearCart } = useCart();
+  const {
+    items,
+    totalItems,
+    totalAmount,
+    updateQuantity,
+    removeItem,
+    clearCart,
+  } = useCart();
   const { user } = useAuth();
 
   // Handle keyboard events
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener("keydown", handleKeyDown);
       // Prevent body scroll when cart is open
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
@@ -48,7 +48,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50" onClick={onClose}>
-      <div 
+      <div
         className="fixed right-0 top-0 h-full w-full max-w-md bg-background shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
@@ -78,9 +78,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                 <p className="text-sm text-muted-foreground mb-4">
                   Add some products from the marketplace to get started.
                 </p>
-                <Button onClick={onClose}>
-                  Continue Shopping
-                </Button>
+                <Button onClick={onClose}>Continue Shopping</Button>
               </div>
             ) : (
               <div className="space-y-4">
@@ -111,7 +109,9 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.quantity - 1)
+                                }
                                 disabled={item.quantity <= (item.minOrder || 1)}
                                 className="h-6 w-6 p-0"
                               >
@@ -123,7 +123,9 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                onClick={() =>
+                                  updateQuantity(item.id, item.quantity + 1)
+                                }
                                 className="h-6 w-6 p-0"
                               >
                                 <Plus className="h-3 w-3" />
@@ -139,7 +141,8 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                             </div>
                           </div>
                           <div className="text-xs text-muted-foreground mt-1">
-                            Subtotal: ₹{(item.price * item.quantity).toLocaleString()}
+                            Subtotal: ₹
+                            {(item.price * item.quantity).toLocaleString()}
                           </div>
                         </div>
                       </div>
@@ -159,14 +162,14 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                   ₹{totalAmount.toLocaleString()}
                 </span>
               </div>
-              
+
               <div className="space-y-2">
                 <Button className="w-full" size="lg">
                   Proceed to Checkout
                 </Button>
-                <Button 
-                  variant="outline" 
-                  className="w-full" 
+                <Button
+                  variant="outline"
+                  className="w-full"
                   onClick={clearCart}
                 >
                   Clear Cart

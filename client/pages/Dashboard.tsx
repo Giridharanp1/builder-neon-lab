@@ -1,19 +1,25 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { 
-  ShoppingCart, 
-  Package, 
-  TrendingUp, 
-  Users, 
+import {
+  ShoppingCart,
+  Package,
+  TrendingUp,
+  Users,
   Bell,
   Settings,
   Search,
   Plus,
   MapPin,
   Star,
-  Clock
+  Clock,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -27,7 +33,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/signin');
+      navigate("/signin");
     }
   }, [isAuthenticated, navigate]);
 
@@ -37,10 +43,10 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
   };
 
-  const isVendor = user.type === 'vendor';
+  const isVendor = user.type === "vendor";
 
   return (
     <div className="min-h-screen bg-background">
@@ -51,21 +57,35 @@ export default function Dashboard() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/dashboard" className="text-sm text-foreground font-medium">
+            <Link
+              to="/dashboard"
+              className="text-sm text-foreground font-medium"
+            >
               Dashboard
             </Link>
-            <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/marketplace"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Marketplace
             </Link>
-            <Link to="/orders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/orders"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Orders
             </Link>
             {isVendor && (
-              <Link to="/suppliers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link
+                to="/suppliers"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
                 Suppliers
               </Link>
             )}
@@ -93,7 +113,9 @@ export default function Dashboard() {
             <div className="flex items-center space-x-2">
               <Avatar className="h-8 w-8">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+                <AvatarFallback>
+                  {user.name.charAt(0).toUpperCase()}
+                </AvatarFallback>
               </Avatar>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 Logout
@@ -113,7 +135,9 @@ export default function Dashboard() {
                 Welcome back, {user.name}!
               </h1>
               <p className="text-muted-foreground mt-1">
-                {isVendor ? 'Manage your orders and find new suppliers' : 'Manage your products and connect with vendors'}
+                {isVendor
+                  ? "Manage your orders and find new suppliers"
+                  : "Manage your products and connect with vendors"}
               </p>
             </div>
             <div className="flex items-center space-x-2">
@@ -130,14 +154,14 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                {isVendor ? 'Active Orders' : 'Total Products'}
+                {isVendor ? "Active Orders" : "Total Products"}
               </CardTitle>
               <Package className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{isVendor ? '12' : '45'}</div>
+              <div className="text-2xl font-bold">{isVendor ? "12" : "45"}</div>
               <p className="text-xs text-muted-foreground">
-                {isVendor ? '+2 from last week' : '+5 this month'}
+                {isVendor ? "+2 from last week" : "+5 this month"}
               </p>
             </CardContent>
           </Card>
@@ -145,12 +169,14 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                {isVendor ? 'Total Spent' : 'Total Sales'}
+                {isVendor ? "Total Spent" : "Total Sales"}
               </CardTitle>
               <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">₹{isVendor ? '15,240' : '87,450'}</div>
+              <div className="text-2xl font-bold">
+                ₹{isVendor ? "15,240" : "87,450"}
+              </div>
               <p className="text-xs text-muted-foreground">
                 +12.5% from last month
               </p>
@@ -160,14 +186,14 @@ export default function Dashboard() {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                {isVendor ? 'Suppliers' : 'Vendors'}
+                {isVendor ? "Suppliers" : "Vendors"}
               </CardTitle>
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{isVendor ? '8' : '23'}</div>
+              <div className="text-2xl font-bold">{isVendor ? "8" : "23"}</div>
               <p className="text-xs text-muted-foreground">
-                {isVendor ? 'Active suppliers' : 'Active customers'}
+                {isVendor ? "Active suppliers" : "Active customers"}
               </p>
             </CardContent>
           </Card>
@@ -178,7 +204,9 @@ export default function Dashboard() {
               <ShoppingCart className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">₹{totalAmount.toLocaleString()}</div>
+              <div className="text-2xl font-bold">
+                ₹{totalAmount.toLocaleString()}
+              </div>
               <p className="text-xs text-muted-foreground">
                 {totalItems} items in cart
               </p>
@@ -195,26 +223,38 @@ export default function Dashboard() {
               <Link to="/marketplace">
                 <Button className="w-full justify-start" size="lg">
                   <Search className="mr-2 h-4 w-4" />
-                  {isVendor ? 'Find Suppliers' : 'Browse Vendors'}
+                  {isVendor ? "Find Suppliers" : "Browse Vendors"}
                 </Button>
               </Link>
-              
+
               <Link to={isVendor ? "/marketplace" : "/suppliers"}>
-                <Button variant="outline" className="w-full justify-start" size="lg">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  size="lg"
+                >
                   <Plus className="mr-2 h-4 w-4" />
-                  {isVendor ? 'Place New Order' : 'Add Product'}
+                  {isVendor ? "Place New Order" : "Add Product"}
                 </Button>
               </Link>
-              
+
               <Link to="/orders">
-                <Button variant="outline" className="w-full justify-start" size="lg">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  size="lg"
+                >
                   <Package className="mr-2 h-4 w-4" />
                   View Orders
                 </Button>
               </Link>
 
               <Link to="/settings">
-                <Button variant="outline" className="w-full justify-start" size="lg">
+                <Button
+                  variant="outline"
+                  className="w-full justify-start"
+                  size="lg"
+                >
                   <Settings className="mr-2 h-4 w-4" />
                   Settings
                 </Button>
@@ -233,12 +273,15 @@ export default function Dashboard() {
                       <Package className="h-4 w-4 text-green-600" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium">Order #12345 delivered</p>
-                      <p className="text-xs text-muted-foreground">Fresh vegetables from Dadar Market</p>
+                      <p className="text-sm font-medium">
+                        Order #12345 delivered
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        Fresh vegetables from Dadar Market
+                      </p>
                     </div>
                     <div className="text-xs text-muted-foreground flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      2 hours ago
+                      <Clock className="h-3 w-3 mr-1" />2 hours ago
                     </div>
                   </div>
 
@@ -248,11 +291,12 @@ export default function Dashboard() {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">New review received</p>
-                      <p className="text-xs text-muted-foreground">5 stars from Spice Master Co.</p>
+                      <p className="text-xs text-muted-foreground">
+                        5 stars from Spice Master Co.
+                      </p>
                     </div>
                     <div className="text-xs text-muted-foreground flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      1 day ago
+                      <Clock className="h-3 w-3 mr-1" />1 day ago
                     </div>
                   </div>
 
@@ -262,11 +306,12 @@ export default function Dashboard() {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">New supplier nearby</p>
-                      <p className="text-xs text-muted-foreground">Fresh Dairy Express - 2.1 km away</p>
+                      <p className="text-xs text-muted-foreground">
+                        Fresh Dairy Express - 2.1 km away
+                      </p>
                     </div>
                     <div className="text-xs text-muted-foreground flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      2 days ago
+                      <Clock className="h-3 w-3 mr-1" />2 days ago
                     </div>
                   </div>
                 </div>
@@ -281,7 +326,9 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Recommended Supplier</CardTitle>
+                <CardTitle className="text-base">
+                  Recommended Supplier
+                </CardTitle>
                 <CardDescription>Based on your order history</CardDescription>
               </CardHeader>
               <CardContent>
@@ -336,8 +383,12 @@ export default function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-green-600">₹2,340</div>
-                  <p className="text-xs text-muted-foreground">18% savings vs market price</p>
+                  <div className="text-2xl font-bold text-green-600">
+                    ₹2,340
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    18% savings vs market price
+                  </p>
                   <Link to="/orders">
                     <Button variant="outline" size="sm" className="w-full mt-3">
                       View Report

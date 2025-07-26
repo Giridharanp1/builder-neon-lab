@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ArrowLeft, Wrench, Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -10,7 +16,11 @@ interface PlaceholderPageProps {
   feature: string;
 }
 
-export default function PlaceholderPage({ title, description, feature }: PlaceholderPageProps) {
+export default function PlaceholderPage({
+  title,
+  description,
+  feature,
+}: PlaceholderPageProps) {
   const { user, logout, isAuthenticated } = useAuth();
 
   return (
@@ -22,19 +32,30 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
             {isAuthenticated && (
               <>
-                <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/dashboard"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Dashboard
                 </Link>
-                <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/marketplace"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Marketplace
                 </Link>
-                <Link to="/orders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/orders"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Orders
                 </Link>
               </>
@@ -44,7 +65,9 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
           <div className="flex items-center space-x-2">
             {isAuthenticated && user ? (
               <>
-                <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
+                <span className="text-sm text-muted-foreground">
+                  Hi, {user.name}
+                </span>
                 <Button variant="ghost" size="sm" onClick={logout}>
                   Logout
                 </Button>
@@ -52,7 +75,9 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
             ) : (
               <>
                 <Link to="/signin">
-                  <Button variant="outline" size="sm">Sign In</Button>
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
                 </Link>
                 <Link to="/signup">
                   <Button size="sm">Get Started</Button>
@@ -69,15 +94,11 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <Wrench className="h-8 w-8 text-primary" />
           </div>
-          
-          <h1 className="text-3xl font-bold text-foreground mb-4">
-            {title}
-          </h1>
-          
-          <p className="text-lg text-muted-foreground mb-8">
-            {description}
-          </p>
-          
+
+          <h1 className="text-3xl font-bold text-foreground mb-4">{title}</h1>
+
+          <p className="text-lg text-muted-foreground mb-8">{description}</p>
+
           <Card className="text-left mb-8">
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -85,22 +106,29 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
                 Coming Soon: {feature}
               </CardTitle>
               <CardDescription>
-                We're actively developing this feature to enhance your StreetSupply experience.
+                We're actively developing this feature to enhance your
+                StreetSupply experience.
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm">User-friendly interface design</span>
+                  <span className="text-sm">
+                    User-friendly interface design
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm">Real-time data synchronization</span>
+                  <span className="text-sm">
+                    Real-time data synchronization
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
-                  <span className="text-sm">Mobile-responsive functionality</span>
+                  <span className="text-sm">
+                    Mobile-responsive functionality
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-primary rounded-full"></div>
@@ -109,7 +137,7 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
               </div>
             </CardContent>
           </Card>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to={isAuthenticated ? "/dashboard" : "/"}>
               <Button variant="outline" className="flex items-center space-x-2">
@@ -117,9 +145,7 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
                 <span>Back to {isAuthenticated ? "Dashboard" : "Home"}</span>
               </Button>
             </Link>
-            <Button>
-              Get Notified When Ready
-            </Button>
+            <Button>Get Notified When Ready</Button>
           </div>
 
           {!isAuthenticated && (
@@ -132,7 +158,9 @@ export default function PlaceholderPage({ title, description, feature }: Placeho
                   <Button size="sm">Sign Up Now</Button>
                 </Link>
                 <Link to="/signin">
-                  <Button variant="outline" size="sm">Sign In</Button>
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
                 </Link>
               </div>
             </div>

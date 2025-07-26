@@ -1,15 +1,26 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { 
-  Search, 
-  MessageSquare, 
-  Phone, 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Search,
+  MessageSquare,
+  Phone,
   Mail,
   FileText,
   Video,
@@ -20,7 +31,7 @@ import {
   AlertCircle,
   Book,
   Headphones,
-  Globe
+  Globe,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -31,78 +42,84 @@ const faqData = [
     questions: [
       {
         q: "How do I create an account on StreetSupply?",
-        a: "To create an account, click the 'Sign Up' button on the homepage. Choose whether you're a vendor or supplier, fill in your details, and verify your email address."
+        a: "To create an account, click the 'Sign Up' button on the homepage. Choose whether you're a vendor or supplier, fill in your details, and verify your email address.",
       },
       {
         q: "What's the difference between vendor and supplier accounts?",
-        a: "Vendor accounts are for street food sellers who buy ingredients and supplies. Supplier accounts are for businesses that sell ingredients to vendors."
+        a: "Vendor accounts are for street food sellers who buy ingredients and supplies. Supplier accounts are for businesses that sell ingredients to vendors.",
       },
       {
         q: "Is StreetSupply free to use?",
-        a: "Yes, basic features are free. We also offer premium plans with advanced features like unlimited orders and AI insights."
-      }
-    ]
+        a: "Yes, basic features are free. We also offer premium plans with advanced features like unlimited orders and AI insights.",
+      },
+    ],
   },
   {
     category: "Orders & Payments",
     questions: [
       {
         q: "How do I place an order?",
-        a: "Browse the marketplace, add items to your cart, review your order, and proceed to checkout. You can pay using various methods including UPI, cards, and cash on delivery."
+        a: "Browse the marketplace, add items to your cart, review your order, and proceed to checkout. You can pay using various methods including UPI, cards, and cash on delivery.",
       },
       {
         q: "Can I cancel or modify my order?",
-        a: "You can cancel or modify orders within 30 minutes of placement, provided the supplier hasn't confirmed it yet."
+        a: "You can cancel or modify orders within 30 minutes of placement, provided the supplier hasn't confirmed it yet.",
       },
       {
         q: "What payment methods are accepted?",
-        a: "We accept UPI, debit/credit cards, net banking, digital wallets, and cash on delivery for eligible orders."
-      }
-    ]
+        a: "We accept UPI, debit/credit cards, net banking, digital wallets, and cash on delivery for eligible orders.",
+      },
+    ],
   },
   {
     category: "Suppliers",
     questions: [
       {
         q: "How are suppliers verified?",
-        a: "Suppliers undergo document verification, quality checks, and business legitimacy verification before being approved on our platform."
+        a: "Suppliers undergo document verification, quality checks, and business legitimacy verification before being approved on our platform.",
       },
       {
         q: "How do I become a partner supplier?",
-        a: "Partner suppliers enjoy benefits like priority listing and bulk discounts. Contact our supplier team to learn about partnership requirements."
+        a: "Partner suppliers enjoy benefits like priority listing and bulk discounts. Contact our supplier team to learn about partnership requirements.",
       },
       {
         q: "What if I have issues with a supplier?",
-        a: "Report any issues through our support system. We investigate all complaints and take appropriate action to maintain quality standards."
-      }
-    ]
-  }
+        a: "Report any issues through our support system. We investigate all complaints and take appropriate action to maintain quality standards.",
+      },
+    ],
+  },
 ];
 
 export default function Support() {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   if (!isAuthenticated) {
-    navigate('/signin');
+    navigate("/signin");
     return null;
   }
 
-  const filteredFAQs = faqData.map(category => ({
-    ...category,
-    questions: category.questions.filter(q => 
-      searchQuery === '' || 
-      q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      q.a.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  })).filter(category => 
-    selectedCategory === 'all' || 
-    category.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
-    category.questions.length > 0
-  );
+  const filteredFAQs = faqData
+    .map((category) => ({
+      ...category,
+      questions: category.questions.filter(
+        (q) =>
+          searchQuery === "" ||
+          q.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          q.a.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+    }))
+    .filter(
+      (category) =>
+        selectedCategory === "all" ||
+        category.category
+          .toLowerCase()
+          .includes(selectedCategory.toLowerCase()) ||
+        category.questions.length > 0,
+    );
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,14 +130,22 @@ export default function Support() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/dashboard"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Dashboard
             </Link>
-            <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/marketplace"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Marketplace
             </Link>
             <Link to="/support" className="text-sm text-foreground font-medium">
@@ -131,7 +156,9 @@ export default function Support() {
           <div className="flex items-center space-x-4">
             <Avatar className="h-8 w-8">
               <AvatarImage src={user?.avatar} alt={user?.name} />
-              <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {user?.name?.charAt(0).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <Button variant="ghost" size="sm" onClick={logout}>
               Logout
@@ -149,8 +176,12 @@ export default function Support() {
             </Button>
           </Link>
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Support Center</h1>
-            <p className="text-muted-foreground">Get help in Hindi, Tamil, and English</p>
+            <h1 className="text-3xl font-bold text-foreground">
+              Support Center
+            </h1>
+            <p className="text-muted-foreground">
+              Get help in Hindi, Tamil, and English
+            </p>
           </div>
         </div>
 
@@ -162,7 +193,9 @@ export default function Support() {
                 <MessageSquare className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Live Chat</h3>
-              <p className="text-sm text-muted-foreground mb-4">Get instant help from our support team</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Get instant help from our support team
+              </p>
               <Badge className="bg-green-100 text-green-800">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                 Online
@@ -176,7 +209,9 @@ export default function Support() {
                 <Phone className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="font-semibold mb-2">Phone Support</h3>
-              <p className="text-sm text-muted-foreground mb-4">Call us for immediate assistance</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Call us for immediate assistance
+              </p>
               <p className="font-mono text-sm">+91 1800-STREET-1</p>
             </CardContent>
           </Card>
@@ -187,7 +222,9 @@ export default function Support() {
                 <Video className="h-6 w-6 text-purple-600" />
               </div>
               <h3 className="font-semibold mb-2">Video Tutorials</h3>
-              <p className="text-sm text-muted-foreground mb-4">Learn with step-by-step guides</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Learn with step-by-step guides
+              </p>
               <Badge variant="outline">Available in 3 languages</Badge>
             </CardContent>
           </Card>
@@ -227,10 +264,19 @@ export default function Support() {
                 <div className="space-y-6">
                   {filteredFAQs.map((category, index) => (
                     <div key={index}>
-                      <h3 className="font-semibold text-lg mb-4">{category.category}</h3>
-                      <Accordion type="single" collapsible className="space-y-2">
+                      <h3 className="font-semibold text-lg mb-4">
+                        {category.category}
+                      </h3>
+                      <Accordion
+                        type="single"
+                        collapsible
+                        className="space-y-2"
+                      >
                         {category.questions.map((faq, faqIndex) => (
-                          <AccordionItem key={faqIndex} value={`item-${index}-${faqIndex}`}>
+                          <AccordionItem
+                            key={faqIndex}
+                            value={`item-${index}-${faqIndex}`}
+                          >
                             <AccordionTrigger className="text-left">
                               {faq.q}
                             </AccordionTrigger>
@@ -264,22 +310,34 @@ export default function Support() {
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">Getting Started as a Vendor</p>
-                      <p className="text-xs text-muted-foreground">5 min read</p>
+                      <p className="font-medium text-sm">
+                        Getting Started as a Vendor
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        5 min read
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">How to Find Reliable Suppliers</p>
-                      <p className="text-xs text-muted-foreground">8 min read</p>
+                      <p className="font-medium text-sm">
+                        How to Find Reliable Suppliers
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        8 min read
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">Managing Orders Efficiently</p>
-                      <p className="text-xs text-muted-foreground">6 min read</p>
+                      <p className="font-medium text-sm">
+                        Managing Orders Efficiently
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        6 min read
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -299,22 +357,34 @@ export default function Support() {
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">Setting Up Your Supplier Profile</p>
-                      <p className="text-xs text-muted-foreground">7 min read</p>
+                      <p className="font-medium text-sm">
+                        Setting Up Your Supplier Profile
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        7 min read
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">Managing Inventory & Pricing</p>
-                      <p className="text-xs text-muted-foreground">10 min read</p>
+                      <p className="font-medium text-sm">
+                        Managing Inventory & Pricing
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        10 min read
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 border rounded hover:bg-muted/50 cursor-pointer">
                     <FileText className="h-4 w-4 text-muted-foreground" />
                     <div>
-                      <p className="font-medium text-sm">Becoming a Partner Supplier</p>
-                      <p className="text-xs text-muted-foreground">4 min read</p>
+                      <p className="font-medium text-sm">
+                        Becoming a Partner Supplier
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        4 min read
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -337,28 +407,36 @@ export default function Support() {
                     <Phone className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Phone Support</p>
-                      <p className="text-sm text-muted-foreground">+91 1800-STREET-1 (24/7)</p>
+                      <p className="text-sm text-muted-foreground">
+                        +91 1800-STREET-1 (24/7)
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Email Support</p>
-                      <p className="text-sm text-muted-foreground">support@streetsupply.com</p>
+                      <p className="text-sm text-muted-foreground">
+                        support@streetsupply.com
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <MessageSquare className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Live Chat</p>
-                      <p className="text-sm text-muted-foreground">Available 9 AM - 9 PM IST</p>
+                      <p className="text-sm text-muted-foreground">
+                        Available 9 AM - 9 PM IST
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Globe className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="font-medium">Languages</p>
-                      <p className="text-sm text-muted-foreground">Hindi, Tamil, English</p>
+                      <p className="text-sm text-muted-foreground">
+                        Hindi, Tamil, English
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -412,9 +490,7 @@ export default function Support() {
                   <CheckCircle className="mr-2 h-5 w-5 text-green-600" />
                   System Status
                 </CardTitle>
-                <CardDescription>
-                  All systems operational
-                </CardDescription>
+                <CardDescription>All systems operational</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-3">
@@ -423,28 +499,36 @@ export default function Support() {
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span className="font-medium">Marketplace</span>
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Operational</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Operational
+                    </Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 border rounded">
                     <div className="flex items-center space-x-3">
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span className="font-medium">Payment Processing</span>
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Operational</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Operational
+                    </Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 border rounded">
                     <div className="flex items-center space-x-3">
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span className="font-medium">Order Management</span>
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Operational</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Operational
+                    </Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 border rounded">
                     <div className="flex items-center space-x-3">
                       <CheckCircle className="h-4 w-4 text-green-600" />
                       <span className="font-medium">Notifications</span>
                     </div>
-                    <Badge className="bg-green-100 text-green-800">Operational</Badge>
+                    <Badge className="bg-green-100 text-green-800">
+                      Operational
+                    </Badge>
                   </div>
                 </div>
               </CardContent>

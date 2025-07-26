@@ -1,21 +1,33 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { 
-  Phone, 
-  Mail, 
+import {
+  Phone,
+  Mail,
   MapPin,
   Clock,
   Send,
   ArrowLeft,
   MessageSquare,
   Headphones,
-  Building
+  Building,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -24,33 +36,35 @@ import { useToast } from "@/hooks/use-toast";
 export default function Contact() {
   const { user, isAuthenticated, logout } = useAuth();
   const { toast } = useToast();
-  
+
   const [formData, setFormData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    phone: user?.phone || '',
-    subject: '',
-    category: '',
-    message: ''
+    name: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
+    subject: "",
+    category: "",
+    message: "",
   });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       setSubmitted(true);
       toast({
         title: "Message sent successfully",
@@ -76,16 +90,24 @@ export default function Contact() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
             {isAuthenticated && (
               <>
-                <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/dashboard"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Dashboard
                 </Link>
-                <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/marketplace"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Marketplace
                 </Link>
               </>
@@ -98,7 +120,9 @@ export default function Contact() {
           <div className="flex items-center space-x-2">
             {isAuthenticated && user ? (
               <>
-                <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
+                <span className="text-sm text-muted-foreground">
+                  Hi, {user.name}
+                </span>
                 <Button variant="ghost" size="sm" onClick={logout}>
                   Logout
                 </Button>
@@ -106,7 +130,9 @@ export default function Contact() {
             ) : (
               <>
                 <Link to="/signin">
-                  <Button variant="outline" size="sm">Sign In</Button>
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
                 </Link>
                 <Link to="/signup">
                   <Button size="sm">Get Started</Button>
@@ -130,9 +156,12 @@ export default function Contact() {
         )}
 
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-foreground mb-4">Contact Us</h1>
+          <h1 className="text-4xl font-bold text-foreground mb-4">
+            Contact Us
+          </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get in touch with our support team. We're here to help you succeed on StreetSupply.
+            Get in touch with our support team. We're here to help you succeed
+            on StreetSupply.
           </p>
         </div>
 
@@ -152,7 +181,9 @@ export default function Contact() {
               <CardContent>
                 <div className="space-y-2">
                   <p className="font-semibold">+91 1800-STREET-1</p>
-                  <p className="text-sm text-muted-foreground">Toll-free number</p>
+                  <p className="text-sm text-muted-foreground">
+                    Toll-free number
+                  </p>
                   <div className="flex items-center space-x-2 text-sm">
                     <Clock className="h-4 w-4 text-muted-foreground" />
                     <span>24/7 Support Available</span>
@@ -167,16 +198,18 @@ export default function Contact() {
                   <Mail className="mr-2 h-5 w-5" />
                   Email Support
                 </CardTitle>
-                <CardDescription>
-                  Send us a detailed message
-                </CardDescription>
+                <CardDescription>Send us a detailed message</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <p className="font-semibold">support@streetsupply.com</p>
-                  <p className="text-sm text-muted-foreground">General inquiries & support</p>
+                  <p className="text-sm text-muted-foreground">
+                    General inquiries & support
+                  </p>
                   <p className="font-semibold">sales@streetsupply.com</p>
-                  <p className="text-sm text-muted-foreground">Business partnerships</p>
+                  <p className="text-sm text-muted-foreground">
+                    Business partnerships
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -187,13 +220,13 @@ export default function Contact() {
                   <Building className="mr-2 h-5 w-5" />
                   Office Address
                 </CardTitle>
-                <CardDescription>
-                  Visit our headquarters
-                </CardDescription>
+                <CardDescription>Visit our headquarters</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <p className="font-semibold">StreetSupply Technologies Pvt Ltd</p>
+                  <p className="font-semibold">
+                    StreetSupply Technologies Pvt Ltd
+                  </p>
                   <div className="flex items-start space-x-2">
                     <MapPin className="h-4 w-4 text-muted-foreground mt-1" />
                     <div>
@@ -212,9 +245,7 @@ export default function Contact() {
                   <MessageSquare className="mr-2 h-5 w-5" />
                   Live Chat
                 </CardTitle>
-                <CardDescription>
-                  Instant help from our team
-                </CardDescription>
+                <CardDescription>Instant help from our team</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button className="w-full">
@@ -236,21 +267,24 @@ export default function Contact() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Send className="h-8 w-8 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-semibold mb-4">Message Sent Successfully!</h3>
+                  <h3 className="text-2xl font-semibold mb-4">
+                    Message Sent Successfully!
+                  </h3>
                   <p className="text-muted-foreground mb-6">
-                    Thank you for contacting us. Our team will review your message and get back to you within 24 hours.
+                    Thank you for contacting us. Our team will review your
+                    message and get back to you within 24 hours.
                   </p>
                   <div className="space-y-4">
-                    <Button 
+                    <Button
                       onClick={() => {
                         setSubmitted(false);
                         setFormData({
-                          name: user?.name || '',
-                          email: user?.email || '',
-                          phone: user?.phone || '',
-                          subject: '',
-                          category: '',
-                          message: ''
+                          name: user?.name || "",
+                          email: user?.email || "",
+                          phone: user?.phone || "",
+                          subject: "",
+                          category: "",
+                          message: "",
                         });
                       }}
                       variant="outline"
@@ -269,7 +303,8 @@ export default function Contact() {
                 <CardHeader>
                   <CardTitle>Send us a Message</CardTitle>
                   <CardDescription>
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we'll get back to you as soon as
+                    possible.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -310,20 +345,35 @@ export default function Contact() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="category">Category *</Label>
-                        <Select 
-                          value={formData.category} 
-                          onValueChange={(value) => setFormData(prev => ({ ...prev, category: value }))}
+                        <Select
+                          value={formData.category}
+                          onValueChange={(value) =>
+                            setFormData((prev) => ({
+                              ...prev,
+                              category: value,
+                            }))
+                          }
                         >
                           <SelectTrigger>
                             <SelectValue placeholder="Select category" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="general">General Inquiry</SelectItem>
-                            <SelectItem value="support">Technical Support</SelectItem>
-                            <SelectItem value="billing">Billing & Payments</SelectItem>
-                            <SelectItem value="partnership">Business Partnership</SelectItem>
+                            <SelectItem value="general">
+                              General Inquiry
+                            </SelectItem>
+                            <SelectItem value="support">
+                              Technical Support
+                            </SelectItem>
+                            <SelectItem value="billing">
+                              Billing & Payments
+                            </SelectItem>
+                            <SelectItem value="partnership">
+                              Business Partnership
+                            </SelectItem>
                             <SelectItem value="complaint">Complaint</SelectItem>
-                            <SelectItem value="feature">Feature Request</SelectItem>
+                            <SelectItem value="feature">
+                              Feature Request
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -356,12 +406,17 @@ export default function Contact() {
 
                     <Alert>
                       <AlertDescription>
-                        <strong>Response Time:</strong> We typically respond to all inquiries within 24 hours. 
-                        For urgent matters, please call our support line.
+                        <strong>Response Time:</strong> We typically respond to
+                        all inquiries within 24 hours. For urgent matters,
+                        please call our support line.
                       </AlertDescription>
                     </Alert>
 
-                    <Button type="submit" disabled={loading || !formData.category} className="w-full">
+                    <Button
+                      type="submit"
+                      disabled={loading || !formData.category}
+                      className="w-full"
+                    >
                       {loading ? (
                         <>
                           <Send className="mr-2 h-4 w-4 animate-pulse" />
@@ -383,7 +438,9 @@ export default function Contact() {
 
         {/* FAQ Section */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-center mb-8">Before You Contact Us</h2>
+          <h2 className="text-2xl font-bold text-center mb-8">
+            Before You Contact Us
+          </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>

@@ -1,9 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Users, 
-  Target, 
+import {
+  Users,
+  Target,
   Award,
   TrendingUp,
   MapPin,
@@ -11,7 +17,7 @@ import {
   ArrowLeft,
   Heart,
   Shield,
-  Zap
+  Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -28,16 +34,24 @@ export default function About() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
             {isAuthenticated && (
               <>
-                <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/dashboard"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Dashboard
                 </Link>
-                <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  to="/marketplace"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Marketplace
                 </Link>
               </>
@@ -50,7 +64,9 @@ export default function About() {
           <div className="flex items-center space-x-2">
             {isAuthenticated && user ? (
               <>
-                <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
+                <span className="text-sm text-muted-foreground">
+                  Hi, {user.name}
+                </span>
                 <Button variant="ghost" size="sm" onClick={logout}>
                   Logout
                 </Button>
@@ -58,7 +74,9 @@ export default function About() {
             ) : (
               <>
                 <Link to="/signin">
-                  <Button variant="outline" size="sm">Sign In</Button>
+                  <Button variant="outline" size="sm">
+                    Sign In
+                  </Button>
                 </Link>
                 <Link to="/signup">
                   <Button size="sm">Get Started</Button>
@@ -87,8 +105,9 @@ export default function About() {
             About StreetSupply
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We're on a mission to empower street food vendors by connecting them directly with trusted suppliers, 
-            eliminating middlemen and creating a more efficient food supply ecosystem.
+            We're on a mission to empower street food vendors by connecting them
+            directly with trusted suppliers, eliminating middlemen and creating
+            a more efficient food supply ecosystem.
           </p>
         </div>
 
@@ -103,9 +122,10 @@ export default function About() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                To revolutionize the street food supply chain by providing a transparent, efficient, and 
-                affordable marketplace that directly connects vendors with suppliers, reducing costs and 
-                improving quality for everyone involved.
+                To revolutionize the street food supply chain by providing a
+                transparent, efficient, and affordable marketplace that directly
+                connects vendors with suppliers, reducing costs and improving
+                quality for everyone involved.
               </p>
             </CardContent>
           </Card>
@@ -119,8 +139,9 @@ export default function About() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                To create a world where every street food vendor has access to high-quality ingredients 
-                at fair prices, enabling them to grow their businesses and serve better food to their communities.
+                To create a world where every street food vendor has access to
+                high-quality ingredients at fair prices, enabling them to grow
+                their businesses and serve better food to their communities.
               </p>
             </CardContent>
           </Card>
@@ -131,20 +152,36 @@ export default function About() {
           <h2 className="text-2xl font-bold text-center mb-8">Our Impact</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">5,000+</div>
-              <div className="text-sm text-muted-foreground">Active Vendors</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                5,000+
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Active Vendors
+              </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">1,200+</div>
-              <div className="text-sm text-muted-foreground">Verified Suppliers</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                1,200+
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Verified Suppliers
+              </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">₹2.5Cr+</div>
-              <div className="text-sm text-muted-foreground">Total Transactions</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                ₹2.5Cr+
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Total Transactions
+              </div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">25%</div>
-              <div className="text-sm text-muted-foreground">Average Cost Savings</div>
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                25%
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Average Cost Savings
+              </div>
             </div>
           </div>
         </div>
@@ -160,7 +197,8 @@ export default function About() {
                 </div>
                 <h3 className="font-semibold mb-2">Trust & Transparency</h3>
                 <p className="text-sm text-muted-foreground">
-                  We verify all suppliers and maintain transparent pricing to build lasting trust in our marketplace.
+                  We verify all suppliers and maintain transparent pricing to
+                  build lasting trust in our marketplace.
                 </p>
               </CardContent>
             </Card>
@@ -172,7 +210,8 @@ export default function About() {
                 </div>
                 <h3 className="font-semibold mb-2">Community First</h3>
                 <p className="text-sm text-muted-foreground">
-                  We prioritize the needs of our vendor and supplier communities, ensuring mutual growth and success.
+                  We prioritize the needs of our vendor and supplier
+                  communities, ensuring mutual growth and success.
                 </p>
               </CardContent>
             </Card>
@@ -184,7 +223,8 @@ export default function About() {
                 </div>
                 <h3 className="font-semibold mb-2">Innovation</h3>
                 <p className="text-sm text-muted-foreground">
-                  We leverage AI and technology to continuously improve the supply chain experience for all users.
+                  We leverage AI and technology to continuously improve the
+                  supply chain experience for all users.
                 </p>
               </CardContent>
             </Card>
@@ -199,28 +239,34 @@ export default function About() {
           </CardHeader>
           <CardContent className="prose prose-gray max-w-none">
             <p className="text-muted-foreground mb-4">
-              StreetSupply was born from a simple observation: street food vendors were paying too much for 
-              ingredients and supplies due to multiple layers of middlemen in the traditional supply chain.
+              StreetSupply was born from a simple observation: street food
+              vendors were paying too much for ingredients and supplies due to
+              multiple layers of middlemen in the traditional supply chain.
             </p>
             <p className="text-muted-foreground mb-4">
-              Our founders, coming from backgrounds in technology and food distribution, realized that a 
-              digital marketplace could eliminate these inefficiencies while providing better service to both 
+              Our founders, coming from backgrounds in technology and food
+              distribution, realized that a digital marketplace could eliminate
+              these inefficiencies while providing better service to both
               vendors and suppliers.
             </p>
             <p className="text-muted-foreground mb-4">
-              Since our launch in 2023, we've facilitated over ₹2.5 crores in transactions, helping thousands 
-              of vendors save money and time while connecting them with reliable suppliers across India.
+              Since our launch in 2023, we've facilitated over ₹2.5 crores in
+              transactions, helping thousands of vendors save money and time
+              while connecting them with reliable suppliers across India.
             </p>
             <p className="text-muted-foreground">
-              Today, we continue to innovate with AI-powered recommendations, demand prediction, and features 
-              that make procurement simpler and more efficient for the street food ecosystem.
+              Today, we continue to innovate with AI-powered recommendations,
+              demand prediction, and features that make procurement simpler and
+              more efficient for the street food ecosystem.
             </p>
           </CardContent>
         </Card>
 
         {/* Team */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-8">Leadership Team</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">
+            Leadership Team
+          </h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
               <CardContent className="p-6 text-center">
@@ -228,9 +274,12 @@ export default function About() {
                   <span className="text-white font-bold text-xl">RK</span>
                 </div>
                 <h3 className="font-semibold">Rahul Kumar</h3>
-                <p className="text-sm text-muted-foreground mb-2">Co-Founder & CEO</p>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Co-Founder & CEO
+                </p>
                 <p className="text-xs text-muted-foreground">
-                  Former tech executive with 12+ years in e-commerce and marketplace development.
+                  Former tech executive with 12+ years in e-commerce and
+                  marketplace development.
                 </p>
               </CardContent>
             </Card>
@@ -241,9 +290,12 @@ export default function About() {
                   <span className="text-white font-bold text-xl">PS</span>
                 </div>
                 <h3 className="font-semibold">Priya Sharma</h3>
-                <p className="text-sm text-muted-foreground mb-2">Co-Founder & CTO</p>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Co-Founder & CTO
+                </p>
                 <p className="text-xs text-muted-foreground">
-                  AI and machine learning expert focused on supply chain optimization.
+                  AI and machine learning expert focused on supply chain
+                  optimization.
                 </p>
               </CardContent>
             </Card>
@@ -254,9 +306,12 @@ export default function About() {
                   <span className="text-white font-bold text-xl">AM</span>
                 </div>
                 <h3 className="font-semibold">Amit Mehta</h3>
-                <p className="text-sm text-muted-foreground mb-2">VP of Operations</p>
+                <p className="text-sm text-muted-foreground mb-2">
+                  VP of Operations
+                </p>
                 <p className="text-xs text-muted-foreground">
-                  20+ years in food distribution and vendor relationship management.
+                  20+ years in food distribution and vendor relationship
+                  management.
                 </p>
               </CardContent>
             </Card>
@@ -268,15 +323,18 @@ export default function About() {
           <CardContent className="p-8">
             <h2 className="text-2xl font-bold mb-4">Join Our Mission</h2>
             <p className="text-muted-foreground mb-6">
-              Whether you're a vendor looking for better suppliers or a supplier wanting to reach more customers, 
-              we're here to help you grow your business.
+              Whether you're a vendor looking for better suppliers or a supplier
+              wanting to reach more customers, we're here to help you grow your
+              business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/signup?type=vendor">
                 <Button size="lg">Start as Vendor</Button>
               </Link>
               <Link to="/signup?type=supplier">
-                <Button size="lg" variant="outline">Join as Supplier</Button>
+                <Button size="lg" variant="outline">
+                  Join as Supplier
+                </Button>
               </Link>
             </div>
           </CardContent>

@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -19,7 +31,7 @@ import {
   Bell,
   Heart,
   Clock,
-  Truck
+  Truck,
 } from "lucide-react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -49,100 +61,100 @@ interface Product {
 
 const mockProducts: Product[] = [
   {
-    id: '1',
-    name: 'Fresh Tomatoes',
-    category: 'Vegetables',
+    id: "1",
+    name: "Fresh Tomatoes",
+    category: "Vegetables",
     price: 45,
-    unit: 'kg',
-    image: '/placeholder.svg',
+    unit: "kg",
+    image: "/placeholder.svg",
     supplier: {
-      id: 'sup1',
-      name: 'Fresh Valley Produce',
-      location: 'Dadar, Mumbai',
+      id: "sup1",
+      name: "Fresh Valley Produce",
+      location: "Dadar, Mumbai",
       rating: 4.8,
       verified: true,
-      distance: '2.3 km'
+      distance: "2.3 km",
     },
     inStock: true,
     minOrder: 5,
-    description: 'Premium quality fresh tomatoes, perfect for cooking'
+    description: "Premium quality fresh tomatoes, perfect for cooking",
   },
   {
-    id: '2',
-    name: 'Red Chili Powder',
-    category: 'Spices',
+    id: "2",
+    name: "Red Chili Powder",
+    category: "Spices",
     price: 180,
-    unit: 'kg',
-    image: '/placeholder.svg',
+    unit: "kg",
+    image: "/placeholder.svg",
     supplier: {
-      id: 'sup2',
-      name: 'Spice Master Co.',
-      location: 'Crawford Market, Mumbai',
+      id: "sup2",
+      name: "Spice Master Co.",
+      location: "Crawford Market, Mumbai",
       rating: 4.6,
       verified: true,
-      distance: '3.1 km'
+      distance: "3.1 km",
     },
     inStock: true,
     minOrder: 1,
-    description: 'Authentic red chili powder with perfect heat and color'
+    description: "Authentic red chili powder with perfect heat and color",
   },
   {
-    id: '3',
-    name: 'Fresh Milk',
-    category: 'Dairy',
+    id: "3",
+    name: "Fresh Milk",
+    category: "Dairy",
     price: 55,
-    unit: 'liter',
-    image: '/placeholder.svg',
+    unit: "liter",
+    image: "/placeholder.svg",
     supplier: {
-      id: 'sup3',
-      name: 'Dairy Express',
-      location: 'Bandra, Mumbai',
+      id: "sup3",
+      name: "Dairy Express",
+      location: "Bandra, Mumbai",
       rating: 4.7,
       verified: true,
-      distance: '4.5 km'
+      distance: "4.5 km",
     },
     inStock: true,
     minOrder: 10,
-    description: 'Fresh cow milk, delivered daily'
+    description: "Fresh cow milk, delivered daily",
   },
   {
-    id: '4',
-    name: 'Basmati Rice',
-    category: 'Grains',
+    id: "4",
+    name: "Basmati Rice",
+    category: "Grains",
     price: 120,
-    unit: 'kg',
-    image: '/placeholder.svg',
+    unit: "kg",
+    image: "/placeholder.svg",
     supplier: {
-      id: 'sup4',
-      name: 'Grain & More',
-      location: 'Andheri, Mumbai',
+      id: "sup4",
+      name: "Grain & More",
+      location: "Andheri, Mumbai",
       rating: 4.5,
       verified: false,
-      distance: '5.2 km'
+      distance: "5.2 km",
     },
     inStock: true,
     minOrder: 10,
-    description: 'Premium basmati rice, aged for perfect aroma'
+    description: "Premium basmati rice, aged for perfect aroma",
   },
   {
-    id: '5',
-    name: 'Fresh Chicken',
-    category: 'Meat',
+    id: "5",
+    name: "Fresh Chicken",
+    category: "Meat",
     price: 280,
-    unit: 'kg',
-    image: '/placeholder.svg',
+    unit: "kg",
+    image: "/placeholder.svg",
     supplier: {
-      id: 'sup5',
-      name: 'Meat Junction',
-      location: 'Kurla, Mumbai',
+      id: "sup5",
+      name: "Meat Junction",
+      location: "Kurla, Mumbai",
       rating: 4.4,
       verified: true,
-      distance: '6.1 km'
+      distance: "6.1 km",
     },
     inStock: false,
     minOrder: 2,
-    description: 'Fresh chicken, cleaned and ready to cook'
-  }
+    description: "Fresh chicken, cleaned and ready to cook",
+  },
 ];
 
 export default function Marketplace() {
@@ -152,19 +164,19 @@ export default function Marketplace() {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [showVerifiedOnly, setShowVerifiedOnly] = useState(false);
-  const [sortBy, setSortBy] = useState('relevance');
+  const [sortBy, setSortBy] = useState("relevance");
   const [filteredProducts, setFilteredProducts] = useState(mockProducts);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Initialize search from URL parameters
   useEffect(() => {
-    const query = searchParams.get('q');
-    const location = searchParams.get('location');
+    const query = searchParams.get("q");
+    const location = searchParams.get("location");
     if (query) {
       setSearchQuery(query);
     }
@@ -175,7 +187,7 @@ export default function Marketplace() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/signin');
+      navigate("/signin");
       return;
     }
 
@@ -183,43 +195,60 @@ export default function Marketplace() {
     let filtered = mockProducts;
 
     if (searchQuery) {
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.supplier.name.toLowerCase().includes(searchQuery.toLowerCase())
+      filtered = filtered.filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.supplier.name
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()),
       );
     }
 
-    if (selectedCategory && selectedCategory !== 'all') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
+    if (selectedCategory && selectedCategory !== "all") {
+      filtered = filtered.filter(
+        (product) => product.category === selectedCategory,
+      );
     }
 
-    filtered = filtered.filter(product => 
-      product.price >= priceRange[0] && product.price <= priceRange[1]
+    filtered = filtered.filter(
+      (product) =>
+        product.price >= priceRange[0] && product.price <= priceRange[1],
     );
 
     if (showVerifiedOnly) {
-      filtered = filtered.filter(product => product.supplier.verified);
+      filtered = filtered.filter((product) => product.supplier.verified);
     }
 
     // Sort products
     switch (sortBy) {
-      case 'price-low':
+      case "price-low":
         filtered.sort((a, b) => a.price - b.price);
         break;
-      case 'price-high':
+      case "price-high":
         filtered.sort((a, b) => b.price - a.price);
         break;
-      case 'rating':
+      case "rating":
         filtered.sort((a, b) => b.supplier.rating - a.supplier.rating);
         break;
-      case 'distance':
-        filtered.sort((a, b) => parseFloat(a.supplier.distance) - parseFloat(b.supplier.distance));
+      case "distance":
+        filtered.sort(
+          (a, b) =>
+            parseFloat(a.supplier.distance) - parseFloat(b.supplier.distance),
+        );
         break;
     }
 
     setFilteredProducts(filtered);
-  }, [searchQuery, selectedCategory, priceRange, showVerifiedOnly, sortBy, isAuthenticated, navigate]);
+  }, [
+    searchQuery,
+    selectedCategory,
+    priceRange,
+    showVerifiedOnly,
+    sortBy,
+    isAuthenticated,
+    navigate,
+  ]);
 
   const handleAddToCart = (product: Product) => {
     const quantity = quantities[product.id] || product.minOrder;
@@ -233,7 +262,7 @@ export default function Marketplace() {
       unit: product.unit,
       image: product.image,
       minOrder: product.minOrder,
-      quantity
+      quantity,
     });
 
     toast({
@@ -243,10 +272,10 @@ export default function Marketplace() {
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
-    setQuantities(prev => ({ ...prev, [productId]: quantity }));
+    setQuantities((prev) => ({ ...prev, [productId]: quantity }));
   };
 
-  const categories = [...new Set(mockProducts.map(p => p.category))];
+  const categories = [...new Set(mockProducts.map((p) => p.category))];
 
   if (!user) {
     return null;
@@ -261,17 +290,28 @@ export default function Marketplace() {
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">S</span>
             </div>
-            <span className="text-xl font-bold text-foreground">StreetSupply</span>
+            <span className="text-xl font-bold text-foreground">
+              StreetSupply
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/dashboard"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Dashboard
             </Link>
-            <Link to="/marketplace" className="text-sm text-foreground font-medium">
+            <Link
+              to="/marketplace"
+              className="text-sm text-foreground font-medium"
+            >
               Marketplace
             </Link>
-            <Link to="/orders" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              to="/orders"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Orders
             </Link>
           </nav>
@@ -295,7 +335,9 @@ export default function Marketplace() {
             </Button>
             <Avatar className="h-8 w-8">
               <AvatarImage src={user.avatar} alt={user.name} />
-              <AvatarFallback>{user.name.charAt(0).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {user.name.charAt(0).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <Button variant="ghost" size="sm" onClick={logout}>
               Logout
@@ -333,13 +375,16 @@ export default function Marketplace() {
                 {/* Category */}
                 <div>
                   <Label>Category</Label>
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <Select
+                    value={selectedCategory}
+                    onValueChange={setSelectedCategory}
+                  >
                     <SelectTrigger className="mt-2">
                       <SelectValue placeholder="All Categories" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All Categories</SelectItem>
-                      {categories.map(category => (
+                      {categories.map((category) => (
                         <SelectItem key={category} value={category}>
                           {category}
                         </SelectItem>
@@ -385,8 +430,12 @@ export default function Marketplace() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="relevance">Relevance</SelectItem>
-                      <SelectItem value="price-low">Price: Low to High</SelectItem>
-                      <SelectItem value="price-high">Price: High to Low</SelectItem>
+                      <SelectItem value="price-low">
+                        Price: Low to High
+                      </SelectItem>
+                      <SelectItem value="price-high">
+                        Price: High to Low
+                      </SelectItem>
                       <SelectItem value="rating">Rating</SelectItem>
                       <SelectItem value="distance">Distance</SelectItem>
                     </SelectContent>
@@ -414,7 +463,10 @@ export default function Marketplace() {
                 const inCart = isInCart(product.id);
 
                 return (
-                  <Card key={product.id} className="group hover:shadow-lg transition-shadow">
+                  <Card
+                    key={product.id}
+                    className="group hover:shadow-lg transition-shadow"
+                  >
                     <CardHeader className="p-4 pb-2">
                       <div className="aspect-square bg-gray-100 rounded-lg mb-3 relative overflow-hidden">
                         <img
@@ -435,11 +487,13 @@ export default function Marketplace() {
                           <Heart className="h-4 w-4" />
                         </Button>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <div className="flex items-start justify-between">
                           <div>
-                            <CardTitle className="text-lg">{product.name}</CardTitle>
+                            <CardTitle className="text-lg">
+                              {product.name}
+                            </CardTitle>
                             <CardDescription className="text-xs">
                               {product.description}
                             </CardDescription>
@@ -472,7 +526,10 @@ export default function Marketplace() {
                               {product.supplier.verified && (
                                 <>
                                   <span>•</span>
-                                  <Badge variant="default" className="text-xs px-1">
+                                  <Badge
+                                    variant="default"
+                                    className="text-xs px-1"
+                                  >
                                     Verified
                                   </Badge>
                                 </>
@@ -504,7 +561,12 @@ export default function Marketplace() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => updateQuantity(product.id, Math.max(product.minOrder, quantity - 1))}
+                              onClick={() =>
+                                updateQuantity(
+                                  product.id,
+                                  Math.max(product.minOrder, quantity - 1),
+                                )
+                              }
                               disabled={quantity <= product.minOrder}
                             >
                               <Minus className="h-3 w-3" />
@@ -515,7 +577,9 @@ export default function Marketplace() {
                             <Button
                               variant="outline"
                               size="sm"
-                              onClick={() => updateQuantity(product.id, quantity + 1)}
+                              onClick={() =>
+                                updateQuantity(product.id, quantity + 1)
+                              }
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
@@ -534,7 +598,8 @@ export default function Marketplace() {
                             ) : (
                               <>
                                 <ShoppingCart className="mr-2 h-4 w-4" />
-                                Add to Cart (₹{(product.price * quantity).toLocaleString()})
+                                Add to Cart (₹
+                                {(product.price * quantity).toLocaleString()})
                               </>
                             )}
                           </Button>
@@ -559,13 +624,18 @@ export default function Marketplace() {
 
             {filteredProducts.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground mb-4">No products found matching your criteria</p>
-                <Button variant="outline" onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('all');
-                  setPriceRange([0, 500]);
-                  setShowVerifiedOnly(false);
-                }}>
+                <p className="text-muted-foreground mb-4">
+                  No products found matching your criteria
+                </p>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory("all");
+                    setPriceRange([0, 500]);
+                    setShowVerifiedOnly(false);
+                  }}
+                >
                   Clear Filters
                 </Button>
               </div>
@@ -575,10 +645,7 @@ export default function Marketplace() {
       </div>
 
       {/* Cart Sidebar */}
-      <CartSidebar
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
