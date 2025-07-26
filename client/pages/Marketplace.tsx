@@ -229,6 +229,11 @@ export default function Marketplace() {
       minOrder: product.minOrder,
       quantity
     });
+
+    toast({
+      title: "Added to cart",
+      description: `${quantity} ${product.unit} of ${product.name} added to your cart.`,
+    });
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
