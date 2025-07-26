@@ -378,7 +378,7 @@ export default function Support() {
                       <span className="text-sm">Live Chat</span>
                     </div>
                     <Badge className="bg-green-100 text-green-800">
-                      < 2 minutes
+                      Under 2 minutes
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between">
@@ -396,7 +396,7 @@ export default function Support() {
                       <span className="text-sm">Email</span>
                     </div>
                     <Badge className="bg-orange-100 text-orange-800">
-                      < 4 hours
+                      Within 4 hours
                     </Badge>
                   </div>
                 </CardContent>
