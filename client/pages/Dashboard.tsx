@@ -213,10 +213,12 @@ export default function Dashboard() {
                 </Button>
               </Link>
 
-              <Button variant="outline" className="w-full justify-start" size="lg">
-                <Settings className="mr-2 h-4 w-4" />
-                Settings
-              </Button>
+              <Link to="/settings">
+                <Button variant="outline" className="w-full justify-start" size="lg">
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </Button>
+              </Link>
             </div>
           </div>
 
