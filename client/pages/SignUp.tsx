@@ -12,7 +12,8 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function SignUp() {
   const navigate = useNavigate();
   const { register, loading } = useAuth();
-  
+  const [searchParams] = useSearchParams();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +24,14 @@ export default function SignUp() {
     location: '',
     phone: ''
   });
+
+  // Set type from URL parameter if provided
+  useEffect(() => {
+    const typeParam = searchParams.get('type');
+    if (typeParam === 'vendor' || typeParam === 'supplier') {
+      setFormData(prev => ({ ...prev, type: typeParam }));
+    }
+  }, [searchParams]);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
