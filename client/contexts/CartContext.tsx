@@ -54,7 +54,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
-    localStorage.setItem("streetSupplyCart", JSON.stringify(items));
+    try {
+      localStorage.setItem("streetSupplyCart", JSON.stringify(items));
+    } catch (error) {
+      console.warn("Failed to save cart to localStorage:", error);
+    }
   }, [items]);
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
