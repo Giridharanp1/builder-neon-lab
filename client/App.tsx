@@ -154,6 +154,16 @@ const App = () => (
                   />
                 }
               />
+              <Route
+                path="/settings"
+                element={
+                  <PlaceholderPage
+                    title="Account Settings"
+                    description="Manage your account preferences and settings"
+                    feature="Comprehensive Settings Management"
+                  />
+                }
+              />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
