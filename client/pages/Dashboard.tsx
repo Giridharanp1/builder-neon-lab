@@ -298,9 +298,11 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="w-full mt-3">
-                  View Profile
-                </Button>
+                <Link to="/suppliers">
+                  <Button variant="outline" size="sm" className="w-full mt-3">
+                    View Profile
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
