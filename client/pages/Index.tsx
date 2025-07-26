@@ -256,12 +256,16 @@ export default function Index() {
               Join thousands of street food vendors who are already saving time and money with StreetSupply.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8">
-                Start as Vendor
-              </Button>
-              <Button size="lg" variant="outline" className="px-8">
-                Join as Supplier
-              </Button>
+              <Link to={isAuthenticated ? "/dashboard" : "/signup?type=vendor"}>
+                <Button size="lg" className="px-8 w-full sm:w-auto">
+                  Start as Vendor
+                </Button>
+              </Link>
+              <Link to={isAuthenticated ? "/dashboard" : "/signup?type=supplier"}>
+                <Button size="lg" variant="outline" className="px-8 w-full sm:w-auto">
+                  Join as Supplier
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
