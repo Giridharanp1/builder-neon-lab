@@ -38,11 +38,32 @@ export default function SignUp() {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+
+    // Clear errors when user starts typing
     if (error) setError('');
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => ({ ...prev, [name]: '' }));
+    }
+
+    // Real-time validation
+    if (name === 'email' && value && !/\S+@\S+\.\S+/.test(value)) {
+      setFieldErrors(prev => ({ ...prev, email: 'Please enter a valid email address' }));
+    }
+
+    if (name === 'confirmPassword' && value && value !== formData.password) {
+      setFieldErrors(prev => ({ ...prev, confirmPassword: 'Passwords do not match' }));
+    }
+
+    if (name === 'password' && formData.confirmPassword && value !== formData.confirmPassword) {
+      setFieldErrors(prev => ({ ...prev, confirmPassword: 'Passwords do not match' }));
+    } else if (name === 'password' && formData.confirmPassword && value === formData.confirmPassword) {
+      setFieldErrors(prev => ({ ...prev, confirmPassword: '' }));
+    }
   };
 
   const handleTypeChange = (value: string) => {
