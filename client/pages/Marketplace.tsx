@@ -569,6 +569,12 @@ export default function Marketplace() {
           </div>
         </div>
       </div>
+
+      {/* Cart Sidebar */}
+      <CartSidebar
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </div>
   );
 }
