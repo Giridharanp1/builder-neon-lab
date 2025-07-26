@@ -40,56 +40,13 @@ const App = () => (
               <Route path="/signup" element={<SignUp />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route
-                path="/suppliers"
-                element={
-                  <PlaceholderPage
-                    title="Supplier Directory"
-                    description="Browse and manage your trusted supplier network"
-                    feature="Advanced Supplier Management"
-                  />
-                }
-              />
-              <Route
-                path="/orders"
-                element={
-                  <PlaceholderPage
-                    title="Order Management"
-                    description="Track and manage all your orders in one place"
-                    feature="Live Order Tracking & Management"
-                  />
-                }
-              />
-              <Route
-                path="/support"
-                element={
-                  <PlaceholderPage
-                    title="AI Support Center"
-                    description="Get help in Tamil, Hindi, and English"
-                    feature="Multilingual AI Chatbot Support"
-                  />
-                }
-              />
-              <Route
-                path="/help"
-                element={
-                  <PlaceholderPage
-                    title="Help Center"
-                    description="Find answers to common questions and tutorials"
-                    feature="Comprehensive Help Documentation"
-                  />
-                }
-              />
-              <Route
-                path="/contact"
-                element={
-                  <PlaceholderPage
-                    title="Contact Us"
-                    description="Get in touch with our support team"
-                    feature="Multi-channel Customer Support"
-                  />
-                }
-              />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/suppliers" element={<Suppliers />} />
+              <Route path="/support" element={<Support />} />
+              <Route path="/help" element={<Support />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
               <Route
                 path="/chat"
                 element={
@@ -107,16 +64,6 @@ const App = () => (
                     title="User Guides"
                     description="Learn how to make the most of StreetSupply"
                     feature="Interactive User Tutorials"
-                  />
-                }
-              />
-              <Route
-                path="/about"
-                element={
-                  <PlaceholderPage
-                    title="About StreetSupply"
-                    description="Learn about our mission to empower street food vendors"
-                    feature="Company Information & Mission"
                   />
                 }
               />
@@ -157,16 +104,6 @@ const App = () => (
                     title="Pricing Plans"
                     description="Choose the right plan for your business"
                     feature="Flexible Pricing & Subscription Plans"
-                  />
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <PlaceholderPage
-                    title="Account Settings"
-                    description="Manage your account preferences and settings"
-                    feature="Comprehensive Settings Management"
                   />
                 }
               />
