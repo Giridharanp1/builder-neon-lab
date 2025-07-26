@@ -133,7 +133,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       setUser(mockUser);
-      localStorage.setItem("streetSupplyUser", JSON.stringify(mockUser));
+      try {
+        localStorage.setItem("streetSupplyUser", JSON.stringify(mockUser));
+      } catch (storageError) {
+        console.warn("Failed to save user to localStorage:", storageError);
+      }
     } catch (error) {
       throw error;
     } finally {
