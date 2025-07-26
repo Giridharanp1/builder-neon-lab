@@ -149,7 +149,7 @@ export default function Marketplace() {
   const navigate = useNavigate();
   
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [showVerifiedOnly, setShowVerifiedOnly] = useState(false);
   const [sortBy, setSortBy] = useState('relevance');
