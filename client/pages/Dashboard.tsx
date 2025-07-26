@@ -338,9 +338,11 @@ export default function Dashboard() {
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">₹2,340</div>
                   <p className="text-xs text-muted-foreground">18% savings vs market price</p>
-                  <Button variant="outline" size="sm" className="w-full mt-3">
-                    View Report
-                  </Button>
+                  <Link to="/orders">
+                    <Button variant="outline" size="sm" className="w-full mt-3">
+                      View Report
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>
