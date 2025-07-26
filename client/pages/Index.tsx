@@ -50,20 +50,35 @@ export default function Index() {
           </div>
           
           <nav className="hidden md:flex items-center space-x-6">
-            <Link to="/vendors" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              For Vendors
+            <Link to="/marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Marketplace
             </Link>
             <Link to="/suppliers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               For Suppliers
             </Link>
-            <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              How It Works
+            <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              About Us
             </Link>
           </nav>
 
           <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm">Sign In</Button>
-            <Button size="sm">Get Started</Button>
+            {isAuthenticated && user ? (
+              <>
+                <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
+                <Link to="/dashboard">
+                  <Button size="sm">Dashboard</Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Button variant="outline" size="sm" onClick={handleSignIn}>
+                  Sign In
+                </Button>
+                <Button size="sm" onClick={handleGetStarted}>
+                  Get Started
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </header>
