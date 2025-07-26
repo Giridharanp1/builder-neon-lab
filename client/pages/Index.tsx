@@ -99,19 +99,25 @@ export default function Index() {
             <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input 
-                  placeholder="Search for suppliers, products, or ingredients..." 
+                <Input
+                  placeholder="Search for suppliers, products, or ingredients..."
                   className="pl-10 h-12 text-base"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-                <Input 
-                  placeholder="Your location" 
+                <Input
+                  placeholder="Your location"
                   className="pl-10 h-12 w-full sm:w-40"
+                  value={searchLocation}
+                  onChange={(e) => setSearchLocation(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
-              <Button size="lg" className="h-12 px-8">
+              <Button size="lg" className="h-12 px-8" onClick={handleSearch}>
                 Find Suppliers
               </Button>
             </div>
