@@ -147,7 +147,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("streetSupplyUser");
+    try {
+      localStorage.removeItem("streetSupplyUser");
+    } catch (error) {
+      console.warn("Failed to remove user from localStorage:", error);
+    }
   };
 
   return (
