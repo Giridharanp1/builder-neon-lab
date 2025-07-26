@@ -535,7 +535,7 @@ export default function Marketplace() {
                 <p className="text-muted-foreground mb-4">No products found matching your criteria</p>
                 <Button variant="outline" onClick={() => {
                   setSearchQuery('');
-                  setSelectedCategory('');
+                  setSelectedCategory('all');
                   setPriceRange([0, 500]);
                   setShowVerifiedOnly(false);
                 }}>
