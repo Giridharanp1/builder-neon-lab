@@ -14,6 +14,12 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import Orders from "./pages/Orders";
+import Suppliers from "./pages/Suppliers";
+import Support from "./pages/Support";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 
