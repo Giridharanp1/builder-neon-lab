@@ -164,8 +164,12 @@ export default function Marketplace() {
   // Initialize search from URL parameters
   useEffect(() => {
     const query = searchParams.get('q');
+    const location = searchParams.get('location');
     if (query) {
       setSearchQuery(query);
+    }
+    if (location) {
+      // Could add location state if needed
     }
   }, [searchParams]);
 
