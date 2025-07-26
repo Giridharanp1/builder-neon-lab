@@ -173,7 +173,7 @@ export default function Marketplace() {
       );
     }
 
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'all') {
       filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
