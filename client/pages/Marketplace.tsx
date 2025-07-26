@@ -8,11 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { 
-  Search, 
-  MapPin, 
-  Star, 
-  ShoppingCart, 
+import {
+  Search,
+  MapPin,
+  Star,
+  ShoppingCart,
   Filter,
   Plus,
   Minus,
@@ -21,7 +21,7 @@ import {
   Clock,
   Truck
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 
