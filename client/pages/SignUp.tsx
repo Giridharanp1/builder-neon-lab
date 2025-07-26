@@ -53,22 +53,30 @@ export default function SignUp() {
   };
 
   const validateForm = () => {
-    if (!formData.name || !formData.email || !formData.password) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.password) {
       return 'Please fill in all required fields';
     }
-    
+
+    if (formData.name.trim().length < 2) {
+      return 'Name must be at least 2 characters long';
+    }
+
     if (formData.password.length < 6) {
       return 'Password must be at least 6 characters long';
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
       return 'Passwords do not match';
     }
-    
+
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
       return 'Please enter a valid email address';
     }
-    
+
+    if (formData.phone && !/^[\+]?[\d\s\-\(\)]{10,}$/.test(formData.phone)) {
+      return 'Please enter a valid phone number';
+    }
+
     return null;
   };
 
