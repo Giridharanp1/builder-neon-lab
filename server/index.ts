@@ -4,25 +4,13 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import { connectDB } from './config/database.js';
-import { errorHandler } from './middleware/errorHandler.js';
-
-// Import routes
-import authRoutes from './routes/auth.js';
-import supplierRoutes from './routes/suppliers.js';
-import productRoutes from './routes/products.js';
-import reviewRoutes from './routes/reviews.js';
-import orderRoutes from './routes/orders.js';
-import aiRoutes from './routes/ai.js';
+import path from 'path';
 
 // Load environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-// Connect to MongoDB
-connectDB();
 
 // Security middleware
 app.use(helmet());
@@ -52,29 +40,26 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
-    message: 'B2B Supplier Platform API is running',
+    message: 'Builder Neon Lab API is running',
     timestamp: new Date().toISOString()
   });
 });
 
-// API routes
-app.use('/api/auth', authRoutes);
-app.use('/api/suppliers', supplierRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/reviews', reviewRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/ai', aiRoutes);
-
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({ 
-    success: false, 
-    message: `Route ${req.originalUrl} not found` 
+// API test endpoint
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'API is working!',
+    timestamp: new Date().toISOString()
   });
 });
 
-// Error handling middleware
-app.use(errorHandler);
+// Serve static files from the React app
+app.use(express.static(path.join(process.cwd(), 'dist/spa')));
+
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'dist/spa', 'index.html'));
+});
 
 // Start server
 app.listen(PORT, () => {
