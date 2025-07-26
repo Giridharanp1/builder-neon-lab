@@ -8,6 +8,35 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 
 export default function Index() {
+  const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchLocation, setSearchLocation] = useState('');
+
+  const handleSearch = () => {
+    if (searchQuery || searchLocation) {
+      navigate(`/marketplace?q=${encodeURIComponent(searchQuery)}&location=${encodeURIComponent(searchLocation)}`);
+    } else {
+      navigate('/marketplace');
+    }
+  };
+
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signup');
+    }
+  };
+
+  const handleSignIn = () => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    } else {
+      navigate('/signin');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
