@@ -159,6 +159,7 @@ export default function Marketplace() {
   const [sortBy, setSortBy] = useState('relevance');
   const [filteredProducts, setFilteredProducts] = useState(mockProducts);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Initialize search from URL parameters
   useEffect(() => {
